@@ -4,141 +4,29 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>ROKKO! Records</title>
-  <meta name="description" content="ROKKO! Records – Das kreative Musiklabel aus dem Ruhrpott. Künstler, Musik und mehr.">
+  <meta name="description" content="ROKKO! Records – Das kreative Musiklabel aus dem Ruhrpott.">
   <link rel="icon" href="assets/images/logo-96.png"/>
   <link rel="stylesheet" href="assets/css/style.css"/>
   <script src="assets/js/app.js" defer></script>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="brand">
-      <img src="assets/images/logo.png" alt="ROKKO Logo" class="brand__logo"/>
-      <div class="brand__title">
-        <span class="brand__top">ROKKO!</span>
-        <span class="brand__bottom">RECORDS</span>
-      </div>
-    </div>
-    <button class="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menu">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="menu" id="menu" aria-label="Hauptmenü">
-      <a href="#about">Wir sind ROKKO</a>
-      <a href="#releases">Releases</a>
-      <a href="#henri">Henri</a>
-      <a href="#erling">Erling</a>
-      <a href="#fleur">Fleur</a>
-      <a href="#skank">Skank</a>
-      <a href="#skaramush">Skaramush</a>
-      <a href="#contact">Kommentarfeld</a>
-    </nav>
-  </header>
-
-  <!-- Hero -->
-  <section class="hero">
-    <video id="introVideo" class="hero__video" autoplay muted loop playsinline
-           src="assets/movies/intro_movie.mp4"></video>
-    <button id="soundBtn" class="sound-btn" aria-pressed="true">Ton: Aus</button>
-  </section>
+  <div data-include="partials/header.html"></div>
+  <div data-include="partials/hero.html"></div>
 
   <main>
+    <div data-include="partials/about.html"></div>
+    <div data-include="partials/releases.html"></div>
 
-    <!-- About -->
-    <section id="about" class="card">
-      <div class="section-head"><h2>Wir sind ROKKO! Records</h2></div>
-      <div class="inner-block">
-        <div class="bio" data-bio-id="bio-rokko">
-          <p class="bio-text collapsed">…</p>
-        </div>
-      </div>
-    </section>
+    <div data-include="partials/headline-artists.html"></div>
+    <div data-include="partials/artist-henri.html"></div>
+    <div data-include="partials/artist-erling.html"></div>
+    <div data-include="partials/headline-logo-break.html"></div>
+    <div data-include="partials/artist-fleur.html"></div>
+    <div data-include="partials/artist-skank.html"></div>
+    <div data-include="partials/artist-skaramush.html"></div>
 
-    <!-- Releases -->
-    <section id="releases" class="card">
-      <div class="section-head"><h2>Aktuelle Releases</h2></div>
-      <div class="inner-block">
-        <p class="coming-soon">comming soon</p>
-      </div>
-    </section>
-
-    <!-- Artists -->
-    <div class="headline-frame"><h2 class="headline-frame__title">Artists</h2></div>
-
-    <section id="henri" class="card artist" data-artist="henri">
-      <div class="inner-block">
-        <img class="artist__photo" src="artists/henri_bellieu/fotos/henri_main.png" alt="Henri Bellieu"/>
-        <h3 class="subhead">Biografie</h3>
-        <div class="bio" data-bio-id="bio-henri"><p class="bio-text collapsed"></p></div>
-        <hr class="sandline"/>
-        <div class="track-list">
-          <button class="track" data-release="lafemme">
-            <div class="thumb"><img src="artists/henri_bellieu/cover/la_femme.png" alt="La Femme"></div>
-            <span class="track-title">La Femme - Original Mix</span>
-          </button>
-          <button class="track" data-release="colibri">
-            <div class="thumb"><img src="artists/henri_bellieu/cover/petite_colibri.png" alt="Petite Colibri"></div>
-            <span class="track-title">Petite Colibri - Original Mix</span>
-          </button>
-        </div>
-        <div class="album-panel" hidden><div class="album-panel__inner">
-          <div class="cover-frame square"><img class="album-panel__cover"></div>
-          <div class="album-panel__players"></div>
-        </div></div>
-      </div>
-    </section>
-
-    <!-- Erling -->
-    <section id="erling" class="card artist" data-artist="erling">
-      <div class="inner-block">
-        <img class="artist__photo" src="artists/erling/fotos/erling_main.png" alt="Markus Erling"/>
-        <h3 class="subhead">Biografie</h3>
-        <div class="bio" data-bio-id="bio-erling"><p class="bio-text collapsed"></p></div>
-        <hr class="sandline"/>
-        <div class="track-list">
-          <button class="track" data-release="schlafen">
-            <div class="thumb"><img src="artists/erling/cover/endlich_schlafen_cover.png" alt="Endlich Schlafen"></div>
-            <span class="track-title">endlich schlafen - Original Mix</span>
-          </button>
-          <button class="track" data-release="regen">
-            <div class="thumb"><img src="artists/erling/cover/regen_cover.png" alt="Der Tag an dem es regnet"></div>
-            <span class="track-title">Tag an dem es regnet - Original Mix</span>
-          </button>
-        </div>
-        <div class="album-panel" hidden><div class="album-panel__inner">
-          <div class="cover-frame square"><img class="album-panel__cover"></div>
-          <div class="album-panel__players"></div>
-        </div></div>
-        <hr class="sandline"/>
-        <div class="youtube"><div class="youtube__wrap">
-          <iframe src="https://www.youtube.com/embed/Rh53YVgsfJ4?rel=0&modestbranding=1&playsinline=1"
-                  title="Markus Erling – Video" allow="autoplay; encrypted-media"
-                  loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-        </div></div>
-      </div>
-    </section>
-
-    <!-- Logo-Zwischenkachel -->
-    <div class="headline-frame headline-frame--logo"><h2 class="headline-frame__title">ROKKO! Records</h2></div>
-
-    <!-- Weitere Artists (Fleur, Skank, Skaramush) analog aufgebaut ... -->
-
-    <!-- Kommentarfeld -->
-    <section id="contact" class="card card--contact">
-      <div class="section-head"><h2>Kommentarfeld</h2></div>
-      <div class="inner-block">
-        <form class="contact__form">
-          <div class="field"><label for="name">Name</label>
-            <input id="name" name="name" type="text" required></div>
-          <div class="field"><label for="email">E-Mail</label>
-            <input id="email" name="email" type="email" required></div>
-          <div class="field"><label for="message">Nachricht</label>
-            <textarea id="message" name="message" rows="6" required></textarea></div>
-          <button class="btn-send" type="submit">Abschicken</button>
-        </form>
-      </div>
-    </section>
-
+    <div data-include="partials/contact.html"></div>
   </main>
 
   <footer class="footer">&copy; 2025 ROKKO! Records. Made in Ruhrpott.</footer>
