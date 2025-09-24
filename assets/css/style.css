@@ -1,180 +1,69 @@
-<!doctype html>
-<html lang="de">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ROKKO! Records</title>
-<meta name="description" content="ROKKO! Records — Artists, Audio, Cover, Fotos.">
-<style>
-:root{--bg:#0e0f12;--ink:#e8edf2;--muted:#a8b0b8;--accent:#ff7a00;--card:#171a1f;--border:#2a2f36;--link:#cfe3ff;--maxw:1200px}
-*{box-sizing:border-box} html,body{margin:0;padding:0}
-body{background:var(--bg);color:var(--ink);font:400 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
-a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
-.container{width:min(80%,var(--maxw));margin-inline:auto;padding:16px}
-header{border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(14,15,18,.75);backdrop-filter:blur(6px);z-index:10}
-h1{margin:10px 0 8px 0}
-.nav{display:flex;gap:12px;flex-wrap:wrap;list-style:none;margin:0 0 10px 0;padding:0}
-.nav a{padding:6px 10px;border-radius:6px;border:1px solid transparent}
-.nav a:hover{border-color:var(--border);text-decoration:none}
-.hero{border-top:1px solid var(--border);padding:18px 0}
-.badge{display:inline-block;padding:2px 6px;border-radius:6px;border:1px solid var(--border);color:var(--muted)}
+/* ===== ROKKO! Records — site stylesheet ===== */
+:root{
+  --bg:#0e0f12;
+  --ink:#e8edf2;
+  --muted:#a8b0b8;
+  --accent:#ff7a00;
+  --card:#171a1f;
+  --border:#2a2f36;
+  --link:#cfe3ff;
+  --maxw:1200px;
+}
+
+/* reset */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font:400 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* container */
+.container{width:min(90%,var(--maxw));margin:0 auto;padding:14px}
+
+/* header */
+header{border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(14,15,18,.78);backdrop-filter:blur(6px);z-index:20;padding-bottom:8px}
+.logo{font-weight:800}
+.nav{list-style:none;display:flex;gap:12px;margin:0;padding:0;flex-wrap:wrap}
+.nav a{padding:6px 10px;border-radius:8px;border:1px solid transparent}
+.nav a:hover{border-color:var(--border)}
+
+/* hero */
+.hero{padding:18px 0;border-top:1px solid var(--border)}
+.small{font-size:.92rem;color:var(--muted)}
+
+/* grid and cards */
 .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));margin-top:14px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
 .card h3{margin:0}
 .muted{color:var(--muted)}
-.mini-links{display:flex;gap:10px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+
+/* mini links */
+.mini-links{display:flex;gap:10px;list-style:none;margin:6px 0 0 0;padding:0;flex-wrap:wrap}
 .mini-links a{border:1px solid var(--border);padding:4px 8px;border-radius:8px}
-.mini-links a:hover{border-color:var(--accent);text-decoration:none}
-.media{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));align-items:start}
-.thumb{width:100%;aspect-ratio:1/1;object-fit:cover;border:1px solid var(--border);border-radius:10px;background:#0b0c0f}
+.mini-links a:hover{border-color:var(--accent)}
+
+/* media blocks */
+.media{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));align-items:start}
+.thumb{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;border:1px solid var(--border);background:#0b0c0f}
+.frame{aspect-ratio:16/9;border-radius:8px;overflow:hidden;border:1px solid var(--border);width:100%}
 audio{width:100%}
-.frame{aspect-ratio:16/9;border:1px solid var(--border);border-radius:10px;overflow:hidden;width:100%}
-footer{border-top:1px solid var(--border);color:var(--muted);padding:24px 0;margin-top:32px}
+
+/* footer */
+footer{border-top:1px solid var(--border);color:var(--muted);padding:20px 0;margin-top:28px}
+
+/* errors */
 .err{color:#ffb3b3}
-</style>
-</head>
-<body>
-<header>
-  <div class="container">
-    <h1>ROKKO! Records</h1>
-    <ul class="nav">
-      <li><a href="#artists">Artists</a></li>
-      <li><a href="assets/movies/">Movies</a></li>
-      <li><a href="assets/images/">Images</a></li>
-      <li><a href="assets/data/">Data</a></li>
-    </ul>
-  </div>
-</header>
 
-<main class="container">
-  <section class="hero">
-    <h2>Alles drin. Automatisch geladen.</h2>
-    <p class="muted">Die Seite listet **alle vorhandenen Dateien** aus Deinen Ordnern über die GitHub-API: 
-      <span class="badge">audio_files</span>, <span class="badge">cover</span>, <span class="badge">fotos</span>.
-      Keine Platzhalter. Keine Handarbeit.</p>
-  </section>
+/* small utilities */
+.hidden{display:none !important}
+.center{text-align:center}
 
-  <section id="artists">
-    <div id="cards" class="grid" aria-live="polite"></div>
-  </section>
-</main>
-
-<footer class="container">
-  <small>© <span id="y"></span> ROKKO! Records — Wahrheit vor Zierde.</small>
-</footer>
-
-<script>
-document.getElementById('y').textContent=new Date().getFullYear();
-
-/* === GitHub API Konfiguration === */
-const USER   = 'skarramushvandango-tech';
-const REPO   = 'webside_rokko_records';
-const BRANCH = 'main'; // falls dein Branch anders heißt, hier anpassen
-
-const ARTISTS = [
-  {slug:'erling',           name:'Markus Erling',     youtube:'Rh53YVgsfJ4'},
-  {slug:'fleur_et_beunie',  name:'Fleur et Beunié'},
-  {slug:'henri_bellieu',    name:'Henri Bellieu'},
-  {slug:'schablonski',      name:'Skank Schablonski'},
-  {slug:'vandango',         name:'Vandango'}
-];
-
-const AUDIO_EXT = ['.mp3','.m4a','.ogg','.wav'];
-const IMG_EXT   = ['.png','.jpg','.jpeg','.webp','.gif','.bmp'];
-
-const apiBase = (path) =>
-  `https://api.github.com/repos/${USER}/${REPO}/contents/${encodeURIComponent(path)}?ref=${encodeURIComponent(BRANCH)}`;
-
-const rawBase = (path) =>
-  `https://raw.githubusercontent.com/${USER}/${REPO}/${encodeURIComponent(BRANCH)}/${path}`;
-
-/* holt Ordnerinhalte (Dateien) */
-async function listDir(path){
-  const res = await fetch(apiBase(path));
-  if(!res.ok) throw new Error(`HTTP ${res.status} für ${path}`);
-  return await res.json(); // array of items
+/* responsive tweaks */
+@media (max-width:480px){
+  .container{padding:10px}
+  .grid{grid-template-columns:1fr}
 }
-
-function hasExt(name, exts){
-  const n = name.toLowerCase();
-  return exts.some(e => n.endsWith(e));
-}
-
-/* baut einen Artist-Card-Knoten */
-function artistCard({slug,name,youtube}){
-  const el = document.createElement('article');
-  el.className='card';
-  el.innerHTML = `
-    <h3>${name}</h3>
-    <p class="muted">Ordner: audio_files • cover • fotos</p>
-    <ul class="mini-links">
-      <li><a href="artists/${slug}/">Ordner</a></li>
-      <li><a href="artists/${slug}/audio_files/">audio_files</a></li>
-      <li><a href="artists/${slug}/cover/">cover</a></li>
-      <li><a href="artists/${slug}/fotos/">fotos</a></li>
-    </ul>
-    <div class="media" id="media-${slug}"></div>
-    <div class="media" id="audio-${slug}"></div>
-    ${youtube ? `<div class="media"><iframe class="frame" src="https://www.youtube.com/embed/${youtube}" title="YouTube: ${name}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>` : ''}
-    <div class="muted" id="log-${slug}"></div>
-  `;
-  return el;
-}
-
-/* rendert Bilder (Cover + Fotos) */
-function renderImages(target, files){
-  const group = document.getElementById(target);
-  if(!files.length){ group.insertAdjacentHTML('beforeend','<p class="muted">Keine Bilder gefunden.</p>'); return; }
-  const imgs = files.slice(0,8).map(f=>`<img class="thumb" loading="lazy" src="${rawBase(f.path)}" alt="${f.name}">`).join('');
-  group.insertAdjacentHTML('beforeend', imgs);
-}
-
-/* rendert Audio-Player */
-function renderAudios(target, files){
-  const group = document.getElementById(target);
-  if(!files.length){ group.insertAdjacentHTML('beforeend','<p class="muted">Keine Audiodateien gefunden.</p>'); return; }
-  const players = files.map(f=>`<div><audio controls preload="none" src="${rawBase(f.path)}"></audio><div class="muted">${f.name}</div></div>`).join('');
-  group.insertAdjacentHTML('beforeend', players);
-}
-
-/* lädt Inhalte für einen Artist */
-async function loadArtist(artist){
-  const card = artistCard(artist);
-  document.getElementById('cards').appendChild(card);
-  const log = document.getElementById(`log-${artist.slug}`);
-
-  try{
-    // COVER
-    const coverFiles = (await listDir(`artists/${artist.slug}/cover`))
-      .filter(x=>x.type==='file' && hasExt(x.name, IMG_EXT));
-    renderImages(`media-${artist.slug}`, coverFiles);
-  }catch(e){
-    log.insertAdjacentHTML('beforeend', `<div class="err">cover: ${e.message}</div>`);
-  }
-
-  try{
-    // FOTOS (zusätzlich anfügen)
-    const fotoFiles = (await listDir(`artists/${artist.slug}/fotos`))
-      .filter(x=>x.type==='file' && hasExt(x.name, IMG_EXT));
-    renderImages(`media-${artist.slug}`, fotoFiles);
-  }catch(e){
-    log.insertAdjacentHTML('beforeend', `<div class="err">fotos: ${e.message}</div>`);
-  }
-
-  try{
-    // AUDIO
-    const audioFiles = (await listDir(`artists/${artist.slug}/audio_files`))
-      .filter(x=>x.type==='file' && hasExt(x.name, AUDIO_EXT));
-    renderAudios(`audio-${artist.slug}`, audioFiles);
-  }catch(e){
-    log.insertAdjacentHTML('beforeend', `<div class="err">audio_files: ${e.message}</div>`);
-  }
-}
-
-/* Start */
-(async function init(){
-  for(const a of ARTISTS){ await loadArtist(a); }
-})();
-</script>
-</body>
-</html>
