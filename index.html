@@ -1,229 +1,274 @@
 <!doctype html>
 <html lang="de">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>ROKKO! Records</title>
-<meta name="description" content="ROKKO! Records — Artists, Audio, Cover, Fotos." />
-
-<!-- externe Styles (falls vorhanden) -->
-<link rel="stylesheet" href="assets/css/styles.css">
-
-<!-- CRITICAL INLINE CSS (immer da, damit es nicht nach nacktem Text aussieht) -->
-<style>
-:root{--bg:#0e0f12;--ink:#e8edf2;--muted:#a8b0b8;--accent:#ff7a00;--card:#171a1f;--border:#2a2f36;--link:#cfe3ff;--maxw:1200px}
-*{box-sizing:border-box}html,body{margin:0;padding:0;height:100%}
-body{background:var(--bg);color:var(--ink);font:400 16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
-a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
-.container{width:min(90%,var(--maxw));margin:0 auto;padding:14px}
-header{border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(14,15,18,.78);backdrop-filter:blur(6px);z-index:20;padding-bottom:8px}
-.logo{margin:8px 0;font-weight:800}
-.nav{list-style:none;display:flex;gap:12px;margin:0;padding:0;flex-wrap:wrap}
-.nav a{padding:6px 10px;border-radius:8px;border:1px solid transparent}
-.hero{padding:18px 0;border-top:1px solid var(--border)}
-.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));margin-top:14px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
-.card h3{margin:0;font-size:1.05rem}
-.muted{color:var(--muted)}
-.mini-links{display:flex;gap:10px;list-style:none;margin:6px 0 0 0;padding:0;flex-wrap:wrap}
-.mini-links a{border:1px solid var(--border);padding:4px 8px;border-radius:8px}
-.mini-links a:hover{border-color:var(--accent)}
-.media{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));align-items:start}
-.thumb{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;border:1px solid var(--border);background:#0b0c0f}
-.frame{aspect-ratio:16/9;border-radius:8px;overflow:hidden;border:1px solid var(--border);width:100%}
-audio{width:100%}
-footer{border-top:1px solid var(--border);color:var(--muted);padding:20px 0;margin-top:28px}
-.err{color:#ffb3b3}
-.small{font-size:.9rem;color:var(--muted)}
-</style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ROKKO Records</title>
+  <meta name="description" content="ROKKO Records – Das kreative Musiklabel aus dem Ruhrpott." />
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="icon" href="assets/images/logo.png"/>
 </head>
 <body>
-<header>
-  <div class="container" aria-hidden="false">
-    <div style="display:flex;justify-content:space-between;align-items:end;gap:12px">
-      <div>
-        <div class="logo">ROKKO! Records</div>
-        <div class="small">Structure first — content always.</div>
+  <header class="site-header" role="banner">
+    <div class="brand">
+      <img src="assets/images/logo.png" alt="ROKKO Logo" class="brand__logo"/>
+      <div class="brand__title">
+        <span class="brand__top">ROKKO!</span>
+        <span class="brand__bottom">RECORDS</span>
       </div>
-      <nav aria-label="Hauptnavigation">
-        <ul class="nav">
-          <li><a href="#artists">Artists</a></li>
-          <li><a href="assets/movies/">Movies</a></li>
-          <li><a href="assets/images/">Images</a></li>
-          <li><a href="assets/data/">Data</a></li>
-        </ul>
-      </nav>
     </div>
+
+    <button id="burger" class="burger" aria-label="Navigation öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="navmenu" class="navmenu" aria-hidden="true">
+      <ul>
+        <li><a href="#artists">Artists</a></li>
+        <li><a href="#bios">Bios</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- Intro-Video (unter Header, keine Rahmen) -->
+    <section class="intro-video card">
+      <div class="video-wrap">
+        <video id="introVideo" class="intro__video" preload="metadata" playsinline muted loop>
+          <source src="assets/movies/intro_movie.mp4" type="video/mp4">
+          Dein Browser unterstützt kein HTML5-Video.
+        </video>
+        <button id="soundToggle" class="sound-toggle" aria-pressed="false" title="Ton an/aus">Ton</button>
+      </div>
+    </section>
+
+    <!-- Artists: starten direkt nach Video -->
+    <section id="artists" class="artists-list">
+      <!-- HENRI BELLIEU -->
+      <article id="henri_bellieu" class="card artist">
+        <div class="inner-block">
+          <h2>Henri Bellieu</h2>
+          <div class="artist-media">
+            <div class="cover">
+              <a class="lightbox-link" href="artists/henri_bellieu/cover/la_femme.png"><img src="artists/henri_bellieu/cover/la_femme.png" alt="la_femme.png"></a>
+              <a class="lightbox-link" href="artists/henri_bellieu/cover/petite_colibri.png"><img src="artists/henri_bellieu/cover/petite_colibri.png" alt="petite_colibri.png"></a>
+            </div>
+            <div class="thumbs">
+              <a class="lightbox-link" href="artists/henri_bellieu/fotos/henri_main.png"><img src="artists/henri_bellieu/fotos/henri_main.png" alt="henri_main.png"></a>
+            </div>
+          </div>
+
+          <h3 class="subhead">Tracks</h3>
+          <div class="tracks">
+            <audio controls preload="none" src="artists/henri_bellieu/audio_files/lafemme/la_femme_main.m4a"></audio>
+            <audio controls preload="none" src="artists/henri_bellieu/audio_files/lafemme/la_femme_deux.m4a"></audio>
+            <audio controls preload="none" src="artists/henri_bellieu/audio_files/petitecolibri/petite_colibri_main.m4a"></audio>
+            <audio controls preload="none" src="artists/henri_bellieu/audio_files/petitecolibri/petite_colibri_nocturne_mix.m4a"></audio>
+            <audio controls preload="none" src="artists/henri_bellieu/audio_files/petitecolibri/petite_colibri_ennio_mix.m4a"></audio>
+          </div>
+        </div>
+      </article>
+
+      <!-- MARKUS ERLING -->
+      <article id="erling" class="card artist">
+        <div class="inner-block">
+          <h2>Markus Erling</h2>
+          <div class="artist-media">
+            <div class="cover">
+              <a class="lightbox-link" href="artists/erling/cover/endlich_schlafen_cover.png"><img src="artists/erling/cover/endlich_schlafen_cover.png" alt="endlich_schlafen_cover.png"></a>
+              <a class="lightbox-link" href="artists/erling/cover/regen_cover.png"><img src="artists/erling/cover/regen_cover.png" alt="regen_cover.png"></a>
+            </div>
+            <div class="thumbs">
+              <a class="lightbox-link" href="artists/erling/fotos/erling_main.png"><img src="artists/erling/fotos/erling_main.png" alt="erling_main.png"></a>
+            </div>
+          </div>
+
+          <h3 class="subhead">Tracks</h3>
+          <div class="tracks">
+            <audio controls preload="none" src="artists/erling/audio_files/schlafen/endlich_schlafen_main.m4a"></audio>
+            <audio controls preload="none" src="artists/erling/audio_files/schlafen/endlich_schlafen_monotoni.m4a"></audio>
+            <audio controls preload="none" src="artists/erling/audio_files/tagregnet/regnet_main.m4a"></audio>
+            <audio controls preload="none" src="artists/erling/audio_files/tagregnet/regnet_rmx.m4a"></audio>
+          </div>
+
+          <p class="small"><a href="artists/erling/erling.html" target="_blank" rel="noreferrer">Artist-Detailseite öffnen</a></p>
+        </div>
+      </article>
+
+      <!-- FLEUR ET BEUNIE -->
+      <article id="fleur_et_beunie" class="card artist">
+        <div class="inner-block">
+          <h2>Fleur et Beunié</h2>
+          <div class="artist-media">
+            <div class="cover">
+              <a class="lightbox-link" href="artists/fleur_et_beunie/cover/feu_leger_cover.png"><img src="artists/fleur_et_beunie/cover/feu_leger_cover.png" alt="feu_leger_cover.png"></a>
+            </div>
+            <div class="thumbs">
+              <a class="lightbox-link" href="artists/fleur_et_beunie/fotos/fleurbenuie_main.png"><img src="artists/fleur_et_beunie/fotos/fleurbenuie_main.png" alt="fleurbenuie_main.png"></a>
+            </div>
+          </div>
+
+          <h3 class="subhead">Tracks</h3>
+          <div class="tracks">
+            <audio controls preload="none" src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_main.m4a"></audio>
+            <audio controls preload="none" src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_sundown_mix.m4a"></audio>
+            <audio controls preload="none" src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_house_mix.m4a"></audio>
+            <audio controls preload="none" src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_french_classic_mix.m4a"></audio>
+            <audio controls preload="none" src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_club_mix.m4a"></audio>
+          </div>
+        </div>
+      </article>
+
+      <!-- SKANK SCHABLONSKI -->
+      <article id="skank_schablonski" class="card artist">
+        <div class="inner-block">
+          <h2>Skank Schablonski</h2>
+          <div class="artist-media">
+            <div class="cover">
+              <a class="lightbox-link" href="artists/skank_schablonski/cover/kohle_raus_cover.png"><img src="artists/skank_schablonski/cover/kohle_raus_cover.png" alt="kohle_raus_cover.png"></a>
+            </div>
+            <div class="thumbs">
+              <a class="lightbox-link" href="artists/skank_schablonski/fotos/skank_main.png"><img src="artists/skank_schablonski/fotos/skank_main.png" alt="skank_main.png"></a>
+            </div>
+          </div>
+
+          <h3 class="subhead">Tracks</h3>
+          <div class="tracks">
+            <audio controls preload="none" src="artists/skank_schablonski/audio_files/kohle_raus/kohle_raus_main.m4a"></audio>
+            <audio controls preload="none" src="artists/skank_schablonski/audio_files/kohle_raus/kohle_raus_rmx.m4a"></audio>
+          </div>
+        </div>
+      </article>
+
+      <!-- SKARAMUSH VANDANGO -->
+      <article id="skaramush_vandango" class="card artist">
+        <div class="inner-block">
+          <h2>Skaramush Vandango</h2>
+          <div class="artist-media">
+            <div class="cover">
+              <a class="lightbox-link" href="artists/skaramush_vandango/cover/cover_fire.png"><img src="artists/skaramush_vandango/cover/cover_fire.png" alt="cover_fire.png"></a>
+            </div>
+            <div class="thumbs">
+              <a class="lightbox-link" href="artists/skaramush_vandango/fotos/skaramush_main.png"><img src="artists/skaramush_vandango/fotos/skaramush_main.png" alt="skaramush_main.png"></a>
+            </div>
+          </div>
+
+          <h3 class="subhead">Tracks</h3>
+          <div class="tracks">
+            <audio controls preload="none" src="artists/skaramush_vandango/audio_files/set_fire/set_on_fire_original.m4a"></audio>
+            <audio controls preload="none" src="artists/skaramush_vandango/audio_files/set_fire/set_on_fire_rmx.m4a"></audio>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Biografien -->
+    <section id="bios" class="card">
+      <div class="inner-block">
+        <h2>Biografien</h2>
+        <div id="biosContent" class="bios-content">Lade Biografien…</div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    &copy; <span id="year"></span> ROKKO! Records. Ruhrpott.
+  </footer>
+
+  <!-- Lightbox Modal -->
+  <div id="lightboxModal" role="dialog" aria-modal="true" onclick="closeLightbox()" tabindex="-1">
+    <img id="lightboxImg" src="" alt="">
   </div>
-</header>
-
-<main class="container">
-  <section class="hero" id="top">
-    <h2 style="margin:.2rem 0 6px 0">Live-Index — automatisch</h2>
-    <p class="muted">Diese Seite lädt automatisch alle Dateien aus deinen Artist-Ordnern (<code>audio_files</code>, <code>cover</code>, <code>fotos</code>) und zeigt Cover, Player und die Fotogalerie. Kein manuelles Eintragen.</p>
-  </section>
-
-  <section id="artists" aria-labelledby="artists-heading">
-    <h3 id="artists-heading" style="margin-top:12px">Artists</h3>
-    <div id="cards" class="grid" aria-live="polite"></div>
-  </section>
-</main>
-
-<footer class="container">
-  <div style="display:flex;justify-content:space-between;align-items:center">
-    <small>© <span id="year"></span> ROKKO! Records</small>
-    <small class="muted">Branch: <span id="branchDisp"></span></small>
-  </div>
-</footer>
 
 <script>
-/* =========================
-   Konfiguration — nicht ändern, außer Branch heißt anders
-   ========================= */
-const USER   = 'skarramushvandango-tech';
-const REPO   = 'webside_rokko_records';
-const BRANCH = 'main'; // falls anderer Branch, anpassen
+/* small behavior scripts: burger, lightbox, video sound toggle, load bios, bio-collapse */
 document.getElementById('year').textContent = new Date().getFullYear();
-document.getElementById('branchDisp').textContent = BRANCH;
 
-/* Liste der Artists (Slugs müssen exakt mit Ordnernamen übereinstimmen) */
-const ARTISTS = [
-  {slug:'erling', name:'Markus Erling', youtube:'Rh53YVgsfJ4'},
-  {slug:'fleur_et_beunie', name:'Fleur et Beunié'},
-  {slug:'henri_bellieu', name:'Henri Bellieu'},
-  {slug:'schablonski', name:'Skank Schablonski'},
-  {slug:'vandango', name:'Vandango'}
-];
+/* Burger */
+const burger = document.getElementById('burger');
+const navmenu = document.getElementById('navmenu');
+burger.addEventListener('click', ()=>{
+  const open = burger.getAttribute('aria-expanded') === 'true';
+  burger.setAttribute('aria-expanded', String(!open));
+  navmenu.classList.toggle('open');
+  navmenu.setAttribute('aria-hidden', String(open));
+});
 
-const AUDIO_EXT = ['.mp3','.m4a','.ogg','.wav'];
-const IMG_EXT   = ['.png','.jpg','.jpeg','.webp','.gif','.bmp'];
-
-function apiUrl(path){
-  return `https://api.github.com/repos/${USER}/${REPO}/contents/${encodeURIComponent(path)}?ref=${encodeURIComponent(BRANCH)}`;
+/* Lightbox */
+function openLightbox(src){
+  const modal = document.getElementById('lightboxModal');
+  const img = document.getElementById('lightboxImg');
+  img.src = src;
+  modal.classList.add('visible');
+  document.body.style.overflow = 'hidden';
+  modal.focus();
 }
-function rawUrl(path){
-  return `https://raw.githubusercontent.com/${USER}/${REPO}/${encodeURIComponent(BRANCH)}/${path}`;
+function closeLightbox(){
+  const modal = document.getElementById('lightboxModal');
+  const img = document.getElementById('lightboxImg');
+  modal.classList.remove('visible');
+  img.src = '';
+  document.body.style.overflow = '';
 }
-function hasExt(name, exts){
-  const n = name.toLowerCase();
-  return exts.some(e => n.endsWith(e));
-}
-
-async function fetchDir(path){
-  const res = await fetch(apiUrl(path));
-  if(!res.ok) throw new Error(`${res.status} ${res.statusText} — ${path}`);
-  return await res.json();
-}
-
-function makeCard(artist){
-  const el = document.createElement('article');
-  el.className = 'card';
-  el.id = `card-${artist.slug}`;
-  el.innerHTML = `
-    <h3>${artist.name}</h3>
-    <div class="small muted">Ordner: audio_files • cover • fotos</div>
-    <ul class="mini-links">
-      <li><a href="artists/${artist.slug}/">Ordner</a></li>
-      <li><a href="artists/${artist.slug}/audio_files/">audio_files</a></li>
-      <li><a href="artists/${artist.slug}/cover/">cover</a></li>
-      <li><a href="artists/${artist.slug}/fotos/">fotos</a></li>
-    </ul>
-    <div id="media-${artist.slug}" class="media" aria-hidden="false"></div>
-    <div id="audio-${artist.slug}" style="margin-top:6px"></div>
-    ${artist.youtube ? `<div style="margin-top:8px"><iframe class="frame" src="https://www.youtube.com/embed/${artist.youtube}" title="${artist.name} YouTube" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>` : ''}
-    <div id="log-${artist.slug}" class="small muted" style="margin-top:6px"></div>
-  `;
-  return el;
-}
-
-function insertImages(containerId, files){
-  const container = document.getElementById(containerId);
-  if(!files || files.length===0){
-    // keine Bilder
-    return;
-  }
-  // sortiere: cover zuerst (falls Name enthält "cover")
-  files.sort((a,b)=>{
-    const ka = /cover/i.test(a.name)?0:1;
-    const kb = /cover/i.test(b.name)?0:1;
-    return ka - kb;
+document.querySelectorAll('.lightbox-link').forEach(a=>{
+  a.addEventListener('click', e=>{
+    e.preventDefault();
+    openLightbox(a.getAttribute('href'));
   });
-  files.slice(0,12).forEach(f=>{
-    const img = document.createElement('img');
-    img.className = 'thumb';
-    img.loading = 'lazy';
-    img.src = rawUrl(f.path);
-    img.alt = f.name;
-    container.appendChild(img);
-  });
-}
+});
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLightbox(); });
 
-function insertAudios(containerId, files){
-  const container = document.getElementById(containerId);
-  if(!files || files.length===0){
-    container.insertAdjacentHTML('beforeend','<div class="muted small">Keine Audiodateien gefunden.</div>');
-    return;
-  }
-  files.sort((a,b)=>a.name.localeCompare(b.name));
-  files.forEach(f=>{
-    const wrap = document.createElement('div');
-    wrap.style.marginBottom = '8px';
-    const audio = document.createElement('audio');
-    audio.controls = true;
-    audio.preload = 'none';
-    audio.src = rawUrl(f.path);
-    wrap.appendChild(audio);
-    const label = document.createElement('div');
-    label.className = 'small muted';
-    label.textContent = f.name;
-    wrap.appendChild(label);
-    container.appendChild(wrap);
-  });
-}
+/* Video sound toggle */
+const intro = document.getElementById('introVideo');
+const soundToggle = document.getElementById('soundToggle');
+soundToggle.addEventListener('click', ()=>{
+  const isMuted = intro.muted;
+  intro.muted = !isMuted;
+  soundToggle.setAttribute('aria-pressed', String(!isMuted));
+  soundToggle.textContent = intro.muted ? 'Ton' : 'Ton Aus';
+});
 
-async function loadArtist(artist){
-  const cards = document.getElementById('cards');
-  const card = makeCard(artist);
-  cards.appendChild(card);
-
-  const mediaId = `media-${artist.slug}`;
-  const audioId = `audio-${artist.slug}`;
-  const logId = `log-${artist.slug}`;
-
-  // cover
+/* Load bios.html into page (sanitized basic) */
+async function loadBios(){
   try{
-    const files = await fetchDir(`artists/${artist.slug}/cover`);
-    const imgs = files.filter(x=>x.type==='file' && hasExt(x.name, IMG_EXT));
-    insertImages(mediaId, imgs);
+    const r = await fetch('assets/data/bios.html');
+    if(!r.ok) throw new Error('bios laden fehlgeschlagen');
+    const txt = await r.text();
+    // simple sanitization: allow p, h1-3, ul, ol, li, strong, em, br
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = txt;
+    const allowed = ['P','H1','H2','H3','UL','OL','LI','STRONG','EM','BR'];
+    const out = document.createElement('div');
+    wrapper.querySelectorAll('*').forEach(node=>{
+      if(allowed.includes(node.nodeName)){
+        out.appendChild(node.cloneNode(true));
+      }
+    });
+    document.getElementById('biosContent').innerHTML = out.innerHTML || txt;
   }catch(e){
-    document.getElementById(logId).insertAdjacentHTML('beforeend', `<div class="err">cover: ${e.message}</div>`);
-  }
-
-  // fotos
-  try{
-    const files = await fetchDir(`artists/${artist.slug}/fotos`);
-    const imgs = files.filter(x=>x.type==='file' && hasExt(x.name, IMG_EXT));
-    insertImages(mediaId, imgs);
-  }catch(e){
-    document.getElementById(logId).insertAdjacentHTML('beforeend', `<div class="err">fotos: ${e.message}</div>`);
-  }
-
-  // audio
-  try{
-    const files = await fetchDir(`artists/${artist.slug}/audio_files`);
-    const aud = files.filter(x=>x.type==='file' && hasExt(x.name, AUDIO_EXT));
-    insertAudios(audioId, aud);
-  }catch(e){
-    document.getElementById(logId).insertAdjacentHTML('beforeend', `<div class="err">audio_files: ${e.message}</div>`);
+    document.getElementById('biosContent').textContent = 'Biografien konnten nicht geladen werden.';
   }
 }
+loadBios();
 
-/* Start */
-(async function(){
-  for(const a of ARTISTS){
-    await loadArtist(a);
+/* Bio collapse toggles (if bio elements exist) */
+document.addEventListener('click', e=>{
+  if(e.target && e.target.classList && e.target.classList.contains('bio-toggle')){
+    const p = e.target.previousElementSibling;
+    if(p){
+      p.classList.toggle('collapsed');
+      e.target.textContent = p.classList.contains('collapsed') ? 'Text erweitern' : 'Text reduzieren';
+    }
   }
-})();
+});
+
+/* make lightbox close on background click only */
+document.getElementById('lightboxModal').addEventListener('click', function(e){
+  if(e.target.id === 'lightboxModal') closeLightbox();
+});
 </script>
 </body>
 </html>
