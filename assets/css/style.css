@@ -1,115 +1,228 @@
-/* assets/css/style.css */
+/* ==== ROKKO! RECORDS – Styles exakt nach Vorgabe ==== */
 :root{
-  --sand:#e6d6b8;
-  --inner:#04151f;
-  --card-text:#e6d6b8;
-  --accent:#ff8c00;
-  --blue:#0059b3;
-  --orange:#ff7a00;
-  --maxw:1200px;
+  /* Farben */
+  --sand: #F5F3BB;     /* Seitenhintergrund + Text in Cards */
+  --brown: #342F2F;    /* Innenfarbe der Kacheln + Header */
+  --outline: #B36728;  /* kräftige Außenkante (zweiter Rahmen) */
+
+  /* Ableitungen */
+  --text: var(--sand);
+  --accent: var(--outline);
+
+  /* Layout */
+  --radius: 22px;
+  --max-wrap-desktop: 70vw;  /* Desktop: max 70% Seitenbreite */
+  --wrap-mobile: 80vw;       /* Mobile: ~80% Seitenbreite */
+  --track-thumb: 56px;
 }
 
 /* Basis */
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
+* { box-sizing: border-box; }
+html:focus-within { scroll-behavior: smooth; }
 body{
-  background:var(--sand);
-  color:#04151f;
-  font:400 17px/1.6 'Segoe UI', system-ui, Arial, Helvetica, sans-serif;
+  margin:0;
+  background: var(--sand);
+  color: var(--text);
+  font: 400 17px/1.6 system-ui, -apple-system, Segoe UI, Arial, Helvetica, sans-serif;
 }
 
-/* Container 80% + Doppelrahmen */
-main{
-  width:min(80vw,var(--maxw));
-  margin:28px auto;
-  outline:8px solid var(--orange);
-  outline-offset:0;
-  padding:10px;
-  border-radius:10px;
-  position:relative;
-}
-main::before{
-  content:"";
-  position:absolute; inset:8px;
-  border:4px solid var(--blue);
-  border-radius:8px;
-  pointer-events:none;
+/* Links & Fokus (keine blauen Defaults) */
+a { color: var(--accent); text-decoration-color: var(--accent); }
+:where(a,button,input,textarea):focus-visible{
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
-/* Header */
+/* ===== Header: braun, ohne Outline ===== */
 .site-header{
+  position: sticky; top: 0; z-index: 80;
   display:flex; align-items:center; justify-content:space-between;
-  padding:12px 18px;
-  background:var(--inner); color:var(--card-text);
-  width:calc(min(80vw,var(--maxw)));
-  margin:20px auto 0 auto;
-  border-radius:8px; position:sticky; top:10px; z-index:50;
+  gap:12px; padding:12px 18px;
+  background: var(--brown); color: var(--text);
+  border: none; /* keine Outline am Header */
+  box-shadow: 0 4px 14px rgba(0,0,0,.35);
 }
-.brand{display:flex; align-items:center; gap:12px}
-.brand__logo{width:52px; height:auto; display:block}
-.brand__top{font:800 22px/1.05 system-ui; color:var(--card-text)}
-.brand__bottom{font:800 14px/1.05 system-ui; letter-spacing:1.8px; color:var(--card-text)}
+.brand{ display:flex; align-items:center; gap:12px; }
+.brand__logo img{ width:52px; height:auto; display:block; }
+.brand__title{ line-height:1; }
+.brand__top{ display:block; font:800 22px/1.05 system-ui; }
+.brand__bottom{ display:block; font:800 14px/1.05 system-ui; letter-spacing:1.8px; }
 
-/* Burger + Menu */
-.burger{background:none;border:0;padding:8px;cursor:pointer;display:flex;flex-direction:column;gap:4px}
-.burger span{display:block;width:24px;height:2px;background:var(--card-text)}
-.navmenu{position:absolute; right:18px; top:66px; background:var(--inner); color:var(--card-text); padding:10px 12px; border-radius:8px; display:none}
-.navmenu.open{display:block}
-.navmenu ul{margin:0;padding:0;list-style:none}
-.navmenu a{color:var(--card-text); text-decoration:none; display:block; padding:6px 0}
+.burger{ background:transparent; border:0; display:grid; gap:4px; padding:8px; cursor:pointer; }
+.burger span{ width:26px; height:2px; background:#fff; border-radius:2px; }
+.menu{
+  position: fixed; right:14px; top:64px; z-index:120; min-width:240px;
+  background:#0E0E0E; color:#fff; display:none;
+  border:1px solid #262626; border-radius:14px; padding:10px 0;
+  box-shadow: 0 12px 30px rgba(0,0,0,.45); backdrop-filter: blur(6px);
+}
+.menu--open{ display:block; }
+.menu a{ display:block; padding:12px 16px; font:600 14px system-ui; color:#fff; }
+.menu a:hover{ background: rgba(179,103,40,.15); }
 
-/* Cards */
+/* ===== Hero: vollbreit, ohne Rahmen ===== */
+.hero{
+  width:100%;
+  height:40vh; min-height:240px;
+  position:relative; overflow:hidden;
+  background:#000; /* Fallback */
+  border:none; border-radius:0; box-shadow:none;
+}
+.hero__video{ width:100%; height:100%; object-fit:cover; display:block; }
+.sound-btn{
+  position:absolute; right:12px; bottom:12px;
+  padding:8px 12px; font:700 13px/1 system-ui;
+  background: rgba(0,0,0,.45); color:#fff;
+  border:1px solid rgba(255,255,255,.35); border-radius:8px;
+  backdrop-filter: blur(4px); cursor:pointer;
+}
+.sound-btn:hover{ background: rgba(0,0,0,.6); }
+
+/* ===== Headline-Rahmen: braun + wlplogo.png + kräftige Außenkante ===== */
+.headline-frame{
+  width:min(var(--max-wrap-desktop),100%);
+  margin:28px auto 8px;
+  background: var(--brown) url("../images/wlplogo.png") center/contain no-repeat;
+  color: var(--text);
+  border-radius: var(--radius);
+  /* „zweiter Rahmen“: fette Außenkante in --outline */
+  box-shadow: 0 0 0 10px var(--outline), 0 8px 20px rgba(0,0,0,.10);
+  padding:10px 18px;
+}
+.headline-frame__title{ margin:0; font:900 1.3rem/1.2 system-ui; }
+
+/* ===== Cards/Kacheln: innen braun, außen kräftig hellbraun ===== */
 .card{
-  max-width:100%; margin:20px auto;
-  background:var(--inner); color:var(--card-text);
-  padding:20px; border-radius:12px; box-shadow:0 8px 26px rgba(0,0,0,.18);
+  width:min(var(--max-wrap-desktop),100%);
+  margin:16px auto;
+  background: var(--brown);         /* Innen braun */
+  color: var(--text);               /* Text sandfarben */
+  border-radius: var(--radius);
+  border:none;
+  /* Orange Außenkante als „zweiter Rahmen“ */
+  box-shadow: 0 0 0 10px var(--outline), 0 8px 20px rgba(0,0,0,.10);
+  overflow:hidden;
+}
+.inner-block{ padding:22px 24px; }
+
+.subhead{ margin:14px 0 8px; font:800 1.05rem/1.2 system-ui; }
+.sandline{ border:0; border-top:1px solid var(--text); opacity:.55; margin:16px 0; }
+.coming-soon{ margin:0; font:800 1.1rem/1.3 system-ui; text-align:center; }
+
+/* ===== Artist-Bild ===== */
+.artist__photo{
+  width:100%; display:block;
+  border:none; border-radius:16px; background:#222; object-fit:cover;
 }
 
-/* Artist-Layout */
-.artist-media{
-  display:grid; grid-template-columns: 1fr 180px; gap:18px; align-items:start; width:100%;
+/* ===== Track-Thumbs ===== */
+.thumb{
+  width: var(--track-thumb); height: var(--track-thumb);
+  border-radius:12px; overflow:hidden;
+  border: 2px solid var(--outline); /* dünne hellbraune Kante */
+  background:#000; flex:0 0 auto;
 }
-@media (max-width:900px){ .artist-media{ grid-template-columns:1fr; gap:12px } }
+.thumb>img{ width:100%; height:100%; object-fit:cover; display:block; }
 
-.cover{max-width:680px; width:100%}
-.cover img{width:100%; height:auto; display:block; border-radius:10px; object-fit:cover; background:var(--sand); border:none; outline:none}
-.thumbs{display:flex; flex-direction:column; gap:10px}
-.thumbs img{width:160px; height:160px; object-fit:cover; border-radius:8px; cursor:pointer; border:none; outline:none}
-@media (max-width:900px){
-  .thumbs{flex-direction:row; overflow:auto; gap:8px; padding-bottom:6px}
-  .thumbs img{width:96px; height:96px; flex:0 0 auto}
+/* ===== Trackliste ===== */
+.track-list{ display:grid; gap:14px; margin-top:12px; }
+.track{
+  display:flex; align-items:center; gap:14px;
+  background:transparent; border:none; cursor:pointer; padding:0;
+}
+.track .track-title{ font-weight:900; font-size:15px; }
+
+/* ===== Album-Panel ===== */
+.album-panel{ margin-top:14px; }
+.album-panel[hidden]{ display:none; }
+.album-panel__inner{ padding:0; background:transparent; border:0; }
+.cover-frame{ border-radius:22px; overflow:hidden; background:#000; margin-bottom:12px; }
+.cover-frame.square{ aspect-ratio:1/1; }
+.cover-frame>img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* ===== Custom Player ===== */
+.player{ margin:12px 0 16px; }
+.player-title{
+  display:inline-block;
+  font:800 14px/1.2 system-ui; color:var(--text);
+  background:transparent;
+  border:2px solid var(--outline);
+  border-radius:999px;
+  padding:6px 12px; margin-bottom:8px;
+}
+.player-controls{ display:flex; align-items:center; gap:12px; }
+.player-btn{
+  width:36px; height:36px; border-radius:50%;
+  border:2px solid var(--outline); background:transparent; color:var(--text);
+  font:900 14px/1 system-ui; display:grid; place-items:center; cursor:pointer;
+}
+.player-btn::before{ content:"►"; transform: translateX(1px); }
+.player-btn[data-state="pause"]::before{ content:"❚❚"; transform:none; }
+.player-progress{
+  position:relative; flex:1 1 auto; height:8px; cursor:pointer;
+  background:#1f2326; border-radius:999px; overflow:hidden; border:1px solid rgba(255,255,255,.15);
+}
+.player-progress__fill{ position:absolute; inset:0 100% 0 0; width:0%; background:var(--outline); }
+.track-error{ color:#ffb3b3; font-weight:700; font-size:12px; margin-top:6px; }
+
+/* ===== YouTube ===== */
+.youtube{ width:100%; display:flex; justify-content:center; margin:30px 0; }
+.youtube__wrap{
+  width:100%; max-width:540px; aspect-ratio:16/9; background:#000; border-radius:10px; overflow:hidden;
+  box-shadow:0 2px 8px rgba(0,0,0,.18); margin:0 auto;
+}
+.youtube__wrap iframe{ width:100%; height:100%; border:none; display:block; }
+
+/* ===== Formular ===== */
+.contact__form{ display:flex; flex-direction:column; gap:16px; }
+.field{ display:flex; flex-direction:column; gap:5px; }
+input, textarea{
+  background:#1f2326; color:var(--text);
+  border:1.5px solid var(--outline); border-radius:7px;
+  padding:8px 10px; font:inherit; outline:none; transition:border-color .2s, box-shadow .2s;
+}
+:where(input,textarea):focus{
+  border-color:#da8b45; /* leichte Abhebung beim Fokus */
+  box-shadow:0 0 0 2px rgba(218,139,69,.25);
+}
+.btn-send{
+  background:var(--outline); color:#fff; border:none; border-radius:8px;
+  padding:10px 22px; font:800 1.1rem system-ui; cursor:pointer; transition:opacity .2s;
+}
+.btn-send:hover{ opacity:.9; }
+
+/* ===== Footer ===== */
+.footer{
+  margin:48px 0 0; padding:22px 0 10px;
+  text-align:center; color:rgba(0,0,0,.55);
+  background:none; border:none;
 }
 
-/* Tracks */
-.tracks{display:flex; flex-direction:column; gap:8px}
-.tracks audio{width:100%}
+/* ===== Bio Teaser/Expand ===== */
+.bio{ margin:0 0 6px 0; }
+.bio-text.collapsed{
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;
+  overflow:hidden; text-overflow:ellipsis; white-space:normal;
+}
+.bio.expanded .bio-text{ -webkit-line-clamp:initial; max-height:none; }
+.bio-toggle{
+  display:inline-block; font-size:13px; color:var(--accent);
+  margin-top:3px; user-select:none; cursor:pointer; text-decoration: underline dotted;
+}
 
-/* Intro-Video */
-.video-wrap{position:relative}
-.intro__video{width:100%; height:auto; display:block; border-radius:6px}
-.sound-toggle{position:absolute; right:12px; bottom:12px; background:rgba(4,21,31,.85); color:var(--card-text); border:1px solid rgba(255,255,255,.06); padding:8px 10px; border-radius:6px; cursor:pointer}
-
-/* YouTube */
-.ytwrap{margin-top:12px}
-.yt{width:100%; aspect-ratio:16/9; border:0; display:block; border-radius:8px}
-
-/* Bios */
-.bios-content{color:var(--card-text)}
-.bio-text.collapsed{max-height:1.5em; overflow:hidden}
-.bio-toggle{color:var(--accent); cursor:pointer; display:inline-block; margin-top:8px}
-
-/* Footer */
-.footer{text-align:center; margin:40px 0; font-size:14px; color:#223}
-
-/* Lightbox */
-#lightboxModal{position:fixed; inset:0; display:none; justify-content:center; align-items:center; background:rgba(0,0,0,.85); z-index:9999; padding:20px}
-#lightboxModal.visible{display:flex}
-#lightboxImg{max-width:90vw; max-height:90vh; border-radius:6px; box-shadow:0 8px 30px rgba(0,0,0,.6)}
-
-/* Responsive Header/Container Breite */
-@media (max-width:900px){
-  .site-header{width:92vw}
-  main{width:92vw}
-  .brand__top{font-size:18px}
-  .brand__bottom{font-size:12px}
+/* ===== Responsive ===== */
+@media (max-width: 640px){
+  :root{ --track-thumb:64px; }
+  .brand__logo img{ width:44px; }
+  .hero{ height:34vh; }
+  .headline-frame, .card{ width:min(var(--wrap-mobile),100%); }
+}
+@media (min-width: 641px) and (max-width: 1199px){
+  .hero{ height:38vh; }
+  .headline-frame, .card{ width:min(85vw,100%); }
+}
+@media (min-width: 1200px){
+  .hero{ height:42vh; }
+  .headline-frame, .card{ width:min(var(--max-wrap-desktop),100%); }
 }
