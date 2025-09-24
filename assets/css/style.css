@@ -9,23 +9,23 @@
   --outline-w:4px;
 }
 
-/* Reset */
+/* reset */
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 img{display:block;max-width:100%;height:auto}
 button{font:inherit}
 
-/* [hidden] MUSS unsichtbar sein, auch wenn .site-nav display setzt */
+/* hidden erzwingen */
 [hidden]{display:none !important}
 
-/* Grundlayout */
+/* grundlayout */
 body{
   background:var(--sand);
   color:#111;
   font:400 17px/1.6 system-ui,-apple-system,Segoe UI,Arial,Helvetica,sans-serif;
 }
 
-/* Header */
+/* header */
 .site-header{
   position:sticky; top:0; z-index:10;
   display:flex; align-items:center; justify-content:space-between;
@@ -37,16 +37,16 @@ body{
 .brand__top{display:block;font-weight:800;font-size:20px;line-height:1.05;color:var(--text)}
 .brand__bottom{display:block;font-weight:800;font-size:12px;letter-spacing:1.6px;color:var(--text);text-transform:uppercase}
 
-/* Burger + Nav */
+/* burger + nav */
 .burger{background:transparent;border:0;display:flex;flex-direction:column;gap:4px;padding:6px;cursor:pointer}
 .burger span{width:22px;height:2px;background:var(--text)}
 .site-nav{
   position:absolute;right:10px;top:56px;background:var(--brown);
   border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:6px
 }
-.site-nav a{color:var(--text);text-decoration:none;font-weight:400} /* NICHT fett */
+.site-nav a{color:var(--text);text-decoration:none;font-weight:400}
 
-/* Video */
+/* video */
 .video-hero{position:relative; background:var(--brown); min-height:40vh;}
 .video-hero__media{width:100%;display:block}
 .video-hero--fallback{
@@ -60,7 +60,7 @@ body{
   border:var(--outline-w) solid var(--outline); border-radius:10px; padding:6px 10px;
 }
 
-/* Cards */
+/* cards */
 .card{
   width:80%; max-width:1100px;
   margin:calc(2 * var(--outline-w)) auto;
@@ -71,7 +71,7 @@ body{
 }
 .card .inner{padding:var(--pad)}
 
-/* Headline */
+/* headlines */
 .headline{
   display:flex; align-items:center; justify-content:center;
   min-height:72px; padding:10px;
@@ -80,25 +80,38 @@ body{
 .wallpaper.logo{background:url("../images/wlplogo.png") center/cover no-repeat}
 .wallpaper.no-logo{background:url("../images/wlpnologo.png") center/cover no-repeat}
 
-/* A11y */
+/* a11y */
 .visually-hidden{
   position:absolute !important; height:1px; width:1px; overflow:hidden;
   clip:rect(1px,1px,1px,1px); white-space:nowrap;
 }
 
-/* Artists */
+/* artist */
 .artist__photo{border-radius:10px; margin-bottom:12px}
 
-/* Bio */
-.bio{display:grid; grid-template-columns: 1fr auto; gap:8px; align-items:start;}
-.bio-preview{grid-column:1 / 2}
-.bio-toggle{
-  grid-column:2 / 3; justify-self:end;
-  background:transparent; border:0; color:var(--text); cursor:pointer; padding:0;
+/* bio: button immer sichtbar, preview begrenzt */
+.bio{
+  position:relative;
+  padding:8px 72px 8px 0; /* platz für button rechts */
+  margin-bottom:6px;
 }
-.bio-full{grid-column:1 / -1; margin-top:6px}
+.bio-preview{
+  display:block;
+  overflow:hidden;
+  max-height:4.5em; /* ~3 zeilen */
+  line-height:1.5;
+  text-overflow:ellipsis;
+  white-space:normal;
+}
+.bio-toggle{
+  position:absolute; top:8px; right:10px;
+  background:transparent; border:0; color:var(--text);
+  cursor:pointer; padding:6px 8px; font-weight:700;
+}
+.bio-full{margin-top:10px}
+.bio-full[hidden]{display:none}
 
-/* Releases */
+/* releases */
 .releases{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:10px}
 .release-mini{
   display:flex;align-items:center;gap:10px;cursor:pointer;
@@ -111,11 +124,11 @@ body{
 .tracks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
 .tracks li{display:flex;flex-direction:column;gap:4px}
 
-/* YouTube */
+/* youtube */
 .video-embed{margin-top:14px}
 .yt{width:100%; aspect-ratio:16/9; border:2px solid var(--outline); border-radius:10px}
 
-/* Kommentar */
+/* kommentar */
 .comment-form .field{display:flex;flex-direction:column;gap:6px}
 .comment-form textarea{
   width:100%; border:2px solid var(--outline); background:#2b2626; color:var(--text);
@@ -127,9 +140,8 @@ body{
 }
 .hint{opacity:.8; font-size:.9em; margin-top:6px}
 
-/* Footer */
+/* footer */
 .footer{ text-align:center; margin:30px 0 50px; color:#e0e0e0 }
 
-/* Responsive */
+/* responsive */
 @media (min-width:900px){ .card{width:70%} }
-@media (min-width:1400px){ .card{width:70%} }
