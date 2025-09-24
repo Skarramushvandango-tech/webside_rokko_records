@@ -1,231 +1,35 @@
-<!-- index.html -->
 <!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>ROKKO Records</title>
-  <meta name="description" content="ROKKO Records – Musiklabel aus dem Ruhrpott." />
-  <link rel="stylesheet" href="assets/css/style.css"/>
+  <title>ROKKO! Records</title>
+  <meta name="description" content="ROKKO! Records – Das kreative Musiklabel aus dem Ruhrpott. Künstler, Musik und mehr.">
   <link rel="icon" href="assets/images/logo-96.png"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <script src="assets/js/app.js" defer></script>
 </head>
 <body>
-  <!-- HEADER -->
-  <header class="site-header" role="banner">
-    <div class="brand">
-      <img src="assets/images/logo-96.png" alt="ROKKO Logo" class="brand__logo"/>
-      <div class="brand__title" aria-hidden="true">
-        <span class="brand__top">ROKKO!</span>
-        <span class="brand__bottom">RECORDS</span>
-      </div>
-    </div>
 
-    <button id="burger" class="burger" aria-label="Navigation öffnen" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+  <!-- Partials werden hier eingesetzt -->
+  <div data-include="partials/header.html"></div>
+  <div data-include="partials/hero.html"></div>
 
-    <nav id="navmenu" class="navmenu" aria-hidden="true">
-      <ul>
-        <li><a href="#artists">Artists</a></li>
-        <li><a href="#bios">Bios</a></li>
-      </ul>
-    </nav>
-  </header>
+  <main>
+    <div data-include="partials/headline-releases.html"></div>
+    <div data-include="partials/releases-preview.html"></div>
 
-  <!-- CONTENT CONTAINER (80% + Doppelrahmen) -->
-  <main id="top">
-    <!-- INTRO-VIDEO (direkt unter Header, ohne Rahmen) -->
-    <section class="intro-video card">
-      <div class="video-wrap">
-        <video id="introVideo" class="intro__video" preload="metadata" playsinline muted loop autoplay>
-          <source src="assets/movies/intro_movie.mp4" type="video/mp4">
-          Dein Browser unterstützt kein HTML5-Video.
-        </video>
-        <button id="soundToggle" class="sound-toggle" aria-pressed="false" title="Ton an/aus">Ton</button>
-      </div>
-    </section>
+    <div data-include="partials/headline-artists.html"></div>
+    <div data-include="partials/artist-henri.html"></div>
+    <div data-include="partials/artist-erling.html"></div>
+    <div data-include="partials/artist-fleur.html"></div>
+    <div data-include="partials/artist-skank.html"></div>
+    <div data-include="partials/artist-skaramush.html"></div>
 
-    <!-- ARTISTS (ohne Textnamen, nur Bilder + Player) -->
-    <section id="artists" class="artists-list">
-
-      <!-- HENRI BELLIEU -->
-      <article id="henri_bellieu" class="card artist">
-        <div class="artist-media">
-          <div class="cover">
-            <a class="lightbox-link" href="artists/henri_bellieu/cover/la_femme.png"><img src="artists/henri_bellieu/cover/la_femme.png" alt="la_femme.png"></a>
-            <a class="lightbox-link" href="artists/henri_bellieu/cover/petite_colibri.png"><img src="artists/henri_bellieu/cover/petite_colibri.png" alt="petite_colibri.png"></a>
-          </div>
-          <div class="thumbs">
-            <a class="lightbox-link" href="artists/henri_bellieu/fotos/henri_main.png"><img src="artists/henri_bellieu/fotos/henri_main.png" alt="henri_main.png"></a>
-          </div>
-        </div>
-        <div class="tracks">
-          <audio controls preload="none" src="artists/henri_bellieu/audio_files/lafemme/la_femme_main.m4a"></audio>
-          <audio controls preload="none" src="artists/henri_bellieu/audio_files/lafemme/la_femme_deux.m4a"></audio>
-          <audio controls preload="none" src="artists/henri_bellieu/audio_files/petitecolibri/petite_colibri_main.m4a"></audio>
-          <audio controls preload="none" src="artists/henri_bellieu/audio_files/petitecolibri/petite_colibri_nocturne_mix.m4a"></audio>
-          <audio controls preload="none" src="artists/henri_bellieu/audio_files/petitecolibri/petite_colibri_ennio_mix.m4a"></audio>
-        </div>
-      </article>
-
-      <!-- MARKUS ERLING -->
-      <article id="erling" class="card artist">
-        <div class="artist-media">
-          <div class="cover">
-            <a class="lightbox-link" href="artists/erling/cover/endlich_schlafen_cover.png"><img src="artists/erling/cover/endlich_schlafen_cover.png" alt="endlich_schlafen_cover.png"></a>
-            <a class="lightbox-link" href="artists/erling/cover/regen_cover.png"><img src="artists/erling/cover/regen_cover.png" alt="regen_cover.png"></a>
-          </div>
-          <div class="thumbs">
-            <a class="lightbox-link" href="artists/erling/fotos/erling_main.png"><img src="artists/erling/fotos/erling_main.png" alt="erling_main.png"></a>
-          </div>
-        </div>
-        <div class="tracks">
-          <audio controls preload="none" src="artists/erling/audio_files/schlafen/endlich_schlafen_main.m4a"></audio>
-          <audio controls preload="none" src="artists/erling/audio_files/schlafen/endlich_schlafen_monotoni.m4a"></audio>
-          <audio controls preload="none" src="artists/erling/audio_files/tagregnet/regnet_main.m4a"></audio>
-          <audio controls preload="none" src="artists/erling/audio_files/tagregnet/regnet_rmx.m4a"></audio>
-        </div>
-        <!-- YouTube (aktuell 1 Video) -->
-        <div class="ytwrap">
-          <iframe class="yt" src="https://www.youtube.com/embed/Rh53YVgsfJ4" title="YouTube video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen></iframe>
-        </div>
-        <p class="small"><a href="artists/erling/erling.html" target="_blank" rel="noreferrer">Detailseite</a></p>
-      </article>
-
-      <!-- FLEUR ET BEUNIÉ -->
-      <article id="fleur_et_beunie" class="card artist">
-        <div class="artist-media">
-          <div class="cover">
-            <a class="lightbox-link" href="artists/fleur_et_beunie/cover/feu_leger_cover.png"><img src="artists/fleur_et_beunie/cover/feu_leger_cover.png" alt="feu_leger_cover.png"></a>
-          </div>
-          <div class="thumbs">
-            <a class="lightbox-link" href="artists/fleur_et_beunie/fotos/fleurbenuie_main.png"><img src="artists/fleur_et_beunie/fotos/fleurbenuie_main.png" alt="fleurbenuie_main.png"></a>
-          </div>
-        </div>
-        <div class="tracks">
-          <audio controls preload="none" src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_main.m4a"></audio>
-          <audio controls preload="none" src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_sundown_mix.m4a"></audio>
-          <audio controls preload="none" src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_house_mix.m4a"></audio>
-          <audio controls preload="none" src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_french_classic_mix.m4a"></audio>
-          <audio controls preload="none" src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_club_mix.m4a"></audio>
-        </div>
-      </article>
-
-      <!-- SKANK SCHABLONSKI -->
-      <article id="skank_schablonski" class="card artist">
-        <div class="artist-media">
-          <div class="cover">
-            <a class="lightbox-link" href="artists/skank_schablonski/cover/kohle_raus_cover.png"><img src="artists/skank_schablonski/cover/kohle_raus_cover.png" alt="kohle_raus_cover.png"></a>
-          </div>
-          <div class="thumbs">
-            <a class="lightbox-link" href="artists/skank_schablonski/fotos/skank_main.png"><img src="artists/skank_schablonski/fotos/skank_main.png" alt="skank_main.png"></a>
-          </div>
-        </div>
-        <div class="tracks">
-          <audio controls preload="none" src="artists/skank_schablonski/audio_files/kohle_raus/kohle_raus_main.m4a"></audio>
-          <audio controls preload="none" src="artists/skank_schablonski/audio_files/kohle_raus/kohle_raus_rmx.m4a"></audio>
-        </div>
-      </article>
-
-      <!-- SKARAMUSH VANDANGO -->
-      <article id="skaramush_vandango" class="card artist">
-        <div class="artist-media">
-          <div class="cover">
-            <a class="lightbox-link" href="artists/skaramush_vandango/cover/cover_fire.png"><img src="artists/skaramush_vandango/cover/cover_fire.png" alt="cover_fire.png"></a>
-          </div>
-          <div class="thumbs">
-            <a class="lightbox-link" href="artists/skaramush_vandango/fotos/skaramush_main.png"><img src="artists/skaramush_vandango/fotos/skaramush_main.png" alt="skaramush_main.png"></a>
-          </div>
-        </div>
-        <div class="tracks">
-          <audio controls preload="none" src="artists/skaramush_vandango/audio_files/set_fire/set_on_fire_original.m4a"></audio>
-          <audio controls preload="none" src="artists/skaramush_vandango/audio_files/set_fire/set_on_fire_rmx.m4a"></audio>
-        </div>
-      </article>
-
-    </section>
-
-    <!-- BIOGRAFIEN (aus externer Datei) -->
-    <section id="bios" class="card">
-      <div id="biosContent" class="bios-content">Lade Biografien…</div>
-    </section>
-
+    <div data-include="partials/headline-contact.html"></div>
+    <div data-include="partials/contact.html"></div>
   </main>
 
-  <footer class="footer">
-    &copy; <span id="year"></span> ROKKO! Records. Ruhrpott.
-  </footer>
-
-  <!-- LIGHTBOX -->
-  <div id="lightboxModal" role="dialog" aria-modal="true" onclick="closeLightbox()" tabindex="-1">
-    <img id="lightboxImg" src="" alt="">
-  </div>
-
-<script>
-document.getElementById('year').textContent = new Date().getFullYear();
-
-/* Burger */
-const burger = document.getElementById('burger');
-const navmenu = document.getElementById('navmenu');
-burger.addEventListener('click', ()=>{
-  const open = burger.getAttribute('aria-expanded') === 'true';
-  burger.setAttribute('aria-expanded', String(!open));
-  navmenu.classList.toggle('open');
-  navmenu.setAttribute('aria-hidden', String(open));
-});
-
-/* Lightbox */
-function openLightbox(src){
-  const modal = document.getElementById('lightboxModal');
-  const img = document.getElementById('lightboxImg');
-  img.src = src;
-  modal.classList.add('visible');
-  document.body.style.overflow = 'hidden';
-  modal.focus();
-}
-function closeLightbox(){
-  const modal = document.getElementById('lightboxModal');
-  const img = document.getElementById('lightboxImg');
-  modal.classList.remove('visible');
-  img.src = '';
-  document.body.style.overflow = '';
-}
-document.querySelectorAll('.lightbox-link').forEach(a=>{
-  a.addEventListener('click', e=>{
-    e.preventDefault();
-    openLightbox(a.getAttribute('href'));
-  });
-});
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLightbox(); });
-
-/* Video: Ton-Umschalter */
-const intro = document.getElementById('introVideo');
-const soundToggle = document.getElementById('soundToggle');
-soundToggle.addEventListener('click', ()=>{
-  const isMuted = intro.muted;
-  intro.muted = !isMuted;
-  soundToggle.setAttribute('aria-pressed', String(!isMuted));
-  soundToggle.textContent = intro.muted ? 'Ton' : 'Ton Aus';
-});
-
-/* Bios laden */
-(async function(){
-  try{
-    const r = await fetch('assets/data/bios.html');
-    if(!r.ok) throw new Error('Bios nicht gefunden');
-    const txt = await r.text();
-    // einfache Sanitization
-    const wrap = document.createElement('div'); wrap.innerHTML = txt;
-    const allowed = new Set(['P','H1','H2','H3','UL','OL','LI','STRONG','EM','BR']);
-    const out = document.createElement('div');
-    wrap.querySelectorAll('*').forEach(n=>{ if(allowed.has(n.nodeName)) out.appendChild(n.cloneNode(true)); });
-    document.getElementById('biosContent').innerHTML = out.innerHTML || txt;
-  }catch(e){
-    document.getElementById('biosContent').textContent = 'Biografien konnten nicht geladen werden.';
-  }
-})();
-</script>
+  <footer class="footer">&copy; 2025 ROKKO! Records. Made in Ruhrpott.</footer>
 </body>
 </html>
