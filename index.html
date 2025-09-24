@@ -1,166 +1,229 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ROKKO! Records — Artists, Audio, Cover, Fotos</title>
-  <meta name="description" content="ROKKO! Records: Strukturierte Artist-Ordner, schnelle Navigation, klare Wege.">
-  <!-- Basic SEO / OG (ohne Bildpflicht) -->
-  <meta property="og:title" content="ROKKO! Records">
-  <meta property="og:description" content="Artists, Audio, Cover, Fotos — sauber sortiert.">
-  <meta property="og:type" content="website">
-  <meta name="theme-color" content="#0e0f12">
-  <link rel="stylesheet" href="assets/css/styles.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ROKKO! Records</title>
+<meta name="description" content="ROKKO! Records — Artists, Audio, Cover, Fotos." />
+
+<!-- externe Styles (falls vorhanden) -->
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<!-- CRITICAL INLINE CSS (immer da, damit es nicht nach nacktem Text aussieht) -->
+<style>
+:root{--bg:#0e0f12;--ink:#e8edf2;--muted:#a8b0b8;--accent:#ff7a00;--card:#171a1f;--border:#2a2f36;--link:#cfe3ff;--maxw:1200px}
+*{box-sizing:border-box}html,body{margin:0;padding:0;height:100%}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+.container{width:min(90%,var(--maxw));margin:0 auto;padding:14px}
+header{border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(14,15,18,.78);backdrop-filter:blur(6px);z-index:20;padding-bottom:8px}
+.logo{margin:8px 0;font-weight:800}
+.nav{list-style:none;display:flex;gap:12px;margin:0;padding:0;flex-wrap:wrap}
+.nav a{padding:6px 10px;border-radius:8px;border:1px solid transparent}
+.hero{padding:18px 0;border-top:1px solid var(--border)}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));margin-top:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.card h3{margin:0;font-size:1.05rem}
+.muted{color:var(--muted)}
+.mini-links{display:flex;gap:10px;list-style:none;margin:6px 0 0 0;padding:0;flex-wrap:wrap}
+.mini-links a{border:1px solid var(--border);padding:4px 8px;border-radius:8px}
+.mini-links a:hover{border-color:var(--accent)}
+.media{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));align-items:start}
+.thumb{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;border:1px solid var(--border);background:#0b0c0f}
+.frame{aspect-ratio:16/9;border-radius:8px;overflow:hidden;border:1px solid var(--border);width:100%}
+audio{width:100%}
+footer{border-top:1px solid var(--border);color:var(--muted);padding:20px 0;margin-top:28px}
+.err{color:#ffb3b3}
+.small{font-size:.9rem;color:var(--muted)}
+</style>
 </head>
 <body>
-  <header class="site-header" role="banner">
-    <div class="container headbar">
-      <h1 class="logo">ROKKO! Records</h1>
+<header>
+  <div class="container" aria-hidden="false">
+    <div style="display:flex;justify-content:space-between;align-items:end;gap:12px">
+      <div>
+        <div class="logo">ROKKO! Records</div>
+        <div class="small">Structure first — content always.</div>
+      </div>
       <nav aria-label="Hauptnavigation">
         <ul class="nav">
           <li><a href="#artists">Artists</a></li>
-          <li><a href="#sitemap">Sitemap</a></li>
           <li><a href="assets/movies/">Movies</a></li>
           <li><a href="assets/images/">Images</a></li>
           <li><a href="assets/data/">Data</a></li>
         </ul>
       </nav>
     </div>
+  </div>
+</header>
 
-    <section class="hero">
-      <div class="container">
-        <h2 class="hero__title">Ordnung ist Groove.</h2>
-        <p class="hero__text">
-          Eine Seite wie ein gutes Arrangement: nichts zu viel, nichts zu wenig. 
-          Unten findest Du die Karten zu allen Artists — jeweils mit Direktwegen zu
-          <span class="badge">audio_files</span>, <span class="badge">cover</span> und <span class="badge">fotos</span>.
-        </p>
-        <div class="hero__actions">
-          <a class="btn" href="#artists">Zu den Artists</a>
-          <a class="btn btn--ghost" href="#sitemap">Sitemap</a>
-        </div>
-      </div>
-    </section>
-  </header>
+<main class="container">
+  <section class="hero" id="top">
+    <h2 style="margin:.2rem 0 6px 0">Live-Index — automatisch</h2>
+    <p class="muted">Diese Seite lädt automatisch alle Dateien aus deinen Artist-Ordnern (<code>audio_files</code>, <code>cover</code>, <code>fotos</code>) und zeigt Cover, Player und die Fotogalerie. Kein manuelles Eintragen.</p>
+  </section>
 
-  <main id="content" role="main">
-    <section id="artists" class="container section">
-      <header class="section__head">
-        <h3>Artists</h3>
-        <p class="muted">Fünf Akten, eine Bühne. Alles verlinkt, sofort benutzbar.</p>
-      </header>
+  <section id="artists" aria-labelledby="artists-heading">
+    <h3 id="artists-heading" style="margin-top:12px">Artists</h3>
+    <div id="cards" class="grid" aria-live="polite"></div>
+  </section>
+</main>
 
-      <ul class="card-grid" role="list">
-        <li class="card">
-          <div class="card__body">
-            <h4 class="card__title"><a class="link-clean" href="artists/erling/">Markus Erling</a></h4>
-            <p class="card__text">Singer-Songwriter. Klare Kante, warme Tiefen.</p>
-            <ul class="mini-links">
-              <li><a href="artists/erling/audio_files/">audio_files</a></li>
-              <li><a href="artists/erling/cover/">cover</a></li>
-              <li><a href="artists/erling/fotos/">fotos</a></li>
-            </ul>
-          </div>
-        </li>
+<footer class="container">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <small>© <span id="year"></span> ROKKO! Records</small>
+    <small class="muted">Branch: <span id="branchDisp"></span></small>
+  </div>
+</footer>
 
-        <li class="card">
-          <div class="card__body">
-            <h4 class="card__title"><a class="link-clean" href="artists/fleur_et_beunie/">Fleur et Beunié</a></h4>
-            <p class="card__text">French House / Tek-House. Neon über Nacht.</p>
-            <ul class="mini-links">
-              <li><a href="artists/fleur_et_beunie/audio_files/">audio_files</a></li>
-              <li><a href="artists/fleur_et_beunie/cover/">cover</a></li>
-              <li><a href="artists/fleur_et_beunie/fotos/">fotos</a></li>
-            </ul>
-          </div>
-        </li>
+<script>
+/* =========================
+   Konfiguration — nicht ändern, außer Branch heißt anders
+   ========================= */
+const USER   = 'skarramushvandango-tech';
+const REPO   = 'webside_rokko_records';
+const BRANCH = 'main'; // falls anderer Branch, anpassen
+document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('branchDisp').textContent = BRANCH;
 
-        <li class="card">
-          <div class="card__body">
-            <h4 class="card__title"><a class="link-clean" href="artists/henri_bellieu/">Henri Bellieu</a></h4>
-            <p class="card__text">Chanson noir. Regen, Rauch, Reverie.</p>
-            <ul class="mini-links">
-              <li><a href="artists/henri_bellieu/audio_files/">audio_files</a></li>
-              <li><a href="artists/henri_bellieu/cover/">cover</a></li>
-              <li><a href="artists/henri_bellieu/fotos/">fotos</a></li>
-            </ul>
-          </div>
-        </li>
+/* Liste der Artists (Slugs müssen exakt mit Ordnernamen übereinstimmen) */
+const ARTISTS = [
+  {slug:'erling', name:'Markus Erling', youtube:'Rh53YVgsfJ4'},
+  {slug:'fleur_et_beunie', name:'Fleur et Beunié'},
+  {slug:'henri_bellieu', name:'Henri Bellieu'},
+  {slug:'schablonski', name:'Skank Schablonski'},
+  {slug:'vandango', name:'Vandango'}
+];
 
-        <li class="card">
-          <div class="card__body">
-            <h4 class="card__title"><a class="link-clean" href="artists/schablonski/">Skank Schablonski</a></h4>
-            <p class="card__text">Ska & Satire. Pott im Puls.</p>
-            <ul class="mini-links">
-              <li><a href="artists/schablonski/audio_files/">audio_files</a></li>
-              <li><a href="artists/schablonski/cover/">cover</a></li>
-              <li><a href="artists/schablonski/fotos/">fotos</a></li>
-            </ul>
-          </div>
-        </li>
+const AUDIO_EXT = ['.mp3','.m4a','.ogg','.wav'];
+const IMG_EXT   = ['.png','.jpg','.jpeg','.webp','.gif','.bmp'];
 
-        <li class="card">
-          <div class="card__body">
-            <h4 class="card__title"><a class="link-clean" href="artists/vandango/">Vandango</a></h4>
-            <p class="card__text">Beats mit Beutezug. Ruhig im Kern, wild im Rand.</p>
-            <ul class="mini-links">
-              <li><a href="artists/vandango/audio_files/">audio_files</a></li>
-              <li><a href="artists/vandango/cover/">cover</a></li>
-              <li><a href="artists/vandango/fotos/">fotos</a></li>
-            </ul>
-          </div>
-        </li>
-      </ul>
-    </section>
+function apiUrl(path){
+  return `https://api.github.com/repos/${USER}/${REPO}/contents/${encodeURIComponent(path)}?ref=${encodeURIComponent(BRANCH)}`;
+}
+function rawUrl(path){
+  return `https://raw.githubusercontent.com/${USER}/${REPO}/${encodeURIComponent(BRANCH)}/${path}`;
+}
+function hasExt(name, exts){
+  const n = name.toLowerCase();
+  return exts.some(e => n.endsWith(e));
+}
 
-    <section id="sitemap" class="container section">
-      <header class="section__head">
-        <h3>Sitemap</h3>
-        <p class="muted">Alles an seinem Platz — klickbar, prüfbar, ordentlich.</p>
-      </header>
+async function fetchDir(path){
+  const res = await fetch(apiUrl(path));
+  if(!res.ok) throw new Error(`${res.status} ${res.statusText} — ${path}`);
+  return await res.json();
+}
 
-      <div class="sitemap">
-        <div class="map-col">
-          <h5>Root</h5>
-          <ul>
-            <li><a href="./">/ (index.html)</a></li>
-            <li><a href="artists/">/artists/</a></li>
-            <li><a href="assets/">/assets/</a></li>
-          </ul>
-        </div>
+function makeCard(artist){
+  const el = document.createElement('article');
+  el.className = 'card';
+  el.id = `card-${artist.slug}`;
+  el.innerHTML = `
+    <h3>${artist.name}</h3>
+    <div class="small muted">Ordner: audio_files • cover • fotos</div>
+    <ul class="mini-links">
+      <li><a href="artists/${artist.slug}/">Ordner</a></li>
+      <li><a href="artists/${artist.slug}/audio_files/">audio_files</a></li>
+      <li><a href="artists/${artist.slug}/cover/">cover</a></li>
+      <li><a href="artists/${artist.slug}/fotos/">fotos</a></li>
+    </ul>
+    <div id="media-${artist.slug}" class="media" aria-hidden="false"></div>
+    <div id="audio-${artist.slug}" style="margin-top:6px"></div>
+    ${artist.youtube ? `<div style="margin-top:8px"><iframe class="frame" src="https://www.youtube.com/embed/${artist.youtube}" title="${artist.name} YouTube" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>` : ''}
+    <div id="log-${artist.slug}" class="small muted" style="margin-top:6px"></div>
+  `;
+  return el;
+}
 
-        <div class="map-col">
-          <h5>Assets</h5>
-          <ul>
-            <li><a href="assets/css/">/assets/css/</a></li>
-            <li><a href="assets/data/">/assets/data/</a></li>
-            <li><a href="assets/images/">/assets/images/</a></li>
-            <li><a href="assets/movies/">/assets/movies/</a></li>
-          </ul>
-        </div>
+function insertImages(containerId, files){
+  const container = document.getElementById(containerId);
+  if(!files || files.length===0){
+    // keine Bilder
+    return;
+  }
+  // sortiere: cover zuerst (falls Name enthält "cover")
+  files.sort((a,b)=>{
+    const ka = /cover/i.test(a.name)?0:1;
+    const kb = /cover/i.test(b.name)?0:1;
+    return ka - kb;
+  });
+  files.slice(0,12).forEach(f=>{
+    const img = document.createElement('img');
+    img.className = 'thumb';
+    img.loading = 'lazy';
+    img.src = rawUrl(f.path);
+    img.alt = f.name;
+    container.appendChild(img);
+  });
+}
 
-        <div class="map-col">
-          <h5>Artists</h5>
-          <ul>
-            <li><a href="artists/erling/">erling/</a></li>
-            <li><a href="artists/fleur_et_beunie/">fleur_et_beunie/</a></li>
-            <li><a href="artists/henri_bellieu/">henri_bellieu/</a></li>
-            <li><a href="artists/schablonski/">schablonski/</a></li>
-            <li><a href="artists/vandango/">vandango/</a></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-  </main>
+function insertAudios(containerId, files){
+  const container = document.getElementById(containerId);
+  if(!files || files.length===0){
+    container.insertAdjacentHTML('beforeend','<div class="muted small">Keine Audiodateien gefunden.</div>');
+    return;
+  }
+  files.sort((a,b)=>a.name.localeCompare(b.name));
+  files.forEach(f=>{
+    const wrap = document.createElement('div');
+    wrap.style.marginBottom = '8px';
+    const audio = document.createElement('audio');
+    audio.controls = true;
+    audio.preload = 'none';
+    audio.src = rawUrl(f.path);
+    wrap.appendChild(audio);
+    const label = document.createElement('div');
+    label.className = 'small muted';
+    label.textContent = f.name;
+    wrap.appendChild(label);
+    container.appendChild(wrap);
+  });
+}
 
-  <footer class="site-footer" role="contentinfo">
-    <div class="container">
-      <small>© <span id="year"></span> ROKKO! Records — Wahrheit vor Zierde.</small>
-    </div>
-  </footer>
+async function loadArtist(artist){
+  const cards = document.getElementById('cards');
+  const card = makeCard(artist);
+  cards.appendChild(card);
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  const mediaId = `media-${artist.slug}`;
+  const audioId = `audio-${artist.slug}`;
+  const logId = `log-${artist.slug}`;
+
+  // cover
+  try{
+    const files = await fetchDir(`artists/${artist.slug}/cover`);
+    const imgs = files.filter(x=>x.type==='file' && hasExt(x.name, IMG_EXT));
+    insertImages(mediaId, imgs);
+  }catch(e){
+    document.getElementById(logId).insertAdjacentHTML('beforeend', `<div class="err">cover: ${e.message}</div>`);
+  }
+
+  // fotos
+  try{
+    const files = await fetchDir(`artists/${artist.slug}/fotos`);
+    const imgs = files.filter(x=>x.type==='file' && hasExt(x.name, IMG_EXT));
+    insertImages(mediaId, imgs);
+  }catch(e){
+    document.getElementById(logId).insertAdjacentHTML('beforeend', `<div class="err">fotos: ${e.message}</div>`);
+  }
+
+  // audio
+  try{
+    const files = await fetchDir(`artists/${artist.slug}/audio_files`);
+    const aud = files.filter(x=>x.type==='file' && hasExt(x.name, AUDIO_EXT));
+    insertAudios(audioId, aud);
+  }catch(e){
+    document.getElementById(logId).insertAdjacentHTML('beforeend', `<div class="err">audio_files: ${e.message}</div>`);
+  }
+}
+
+/* Start */
+(async function(){
+  for(const a of ARTISTS){
+    await loadArtist(a);
+  }
+})();
+</script>
 </body>
 </html>
