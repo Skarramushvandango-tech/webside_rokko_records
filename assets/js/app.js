@@ -1,4 +1,4 @@
-// ---------- HTML-Partials laden ----------
+// ---------- Partials laden ----------
 async function includePartials() {
   const nodes = document.querySelectorAll('[data-include]');
   for (const el of nodes) {
@@ -13,7 +13,7 @@ async function includePartials() {
   }
 }
 
-// ---------- UI-Logiken nach dem Einfügen ----------
+// ---------- Menü ----------
 function initMenu(){
   const burger = document.querySelector('.burger');
   const menu = document.getElementById('menu');
@@ -24,6 +24,7 @@ function initMenu(){
   });
 }
 
+// ---------- Hero-Sound ----------
 function initHeroSound(){
   const introVideo = document.getElementById('introVideo');
   const soundBtn = document.getElementById('soundBtn');
@@ -37,16 +38,39 @@ function initHeroSound(){
   });
 }
 
+// ---------- Bios: Teaser inline + Expand/Collapse ----------
 function initBios(){
   function trimTeaser(text, max) {
     const clean = (text||'').replace(/\s+/g,' ').trim();
     if (clean.length <= max) return clean;
     const cut = clean.lastIndexOf(' ', max-1);
-    return (cut>0? clean.slice(0,cut) : clean.slice(0,max)).trim() + ' …';
+    return (cut>0? clean.slice(0,cut) : clean.slice(0,max)).trim();
   }
   function firstParagraphHTML(html) {
     const t = document.createElement('div'); t.innerHTML = html;
     const p = t.querySelector('p'); return p ? p.innerHTML : t.textContent || '';
+  }
+  function setTeaser(textEl, teaser, fullHTML){
+    textEl.textContent = teaser + ' … ';
+    const toggle = document.createElement('span');
+    toggle.className = 'bio-toggle';
+    toggle.textContent = 'Text erweitern';
+    toggle.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      setExpanded(textEl, fullHTML, teaser);
+    });
+    textEl.appendChild(toggle);
+  }
+  function setExpanded(textEl, fullHTML, teaser){
+    textEl.innerHTML = fullHTML + ' ';
+    const toggle = document.createElement('span');
+    toggle.className = 'bio-toggle';
+    toggle.textContent = 'Text einklappen';
+    toggle.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      setTeaser(textEl, teaser, fullHTML);
+    });
+    textEl.appendChild(toggle);
   }
 
   fetch('assets/data/bios.html')
@@ -59,34 +83,13 @@ function initBios(){
         if (!node) return;
         const fullHTML = node.innerHTML.trim();
         const firstP = firstParagraphHTML(fullHTML);
-        const teaser = trimTeaser(firstP.replace(/<[^>]+>/g,'').replace(/\u00A0/g,' '), 260);
+        // Entities/nbsp bereinigen
+        const teaser = trimTeaser(firstP.replace(/\u00A0/g,' ').replace(/<[^>]+>/g,''), 260);
 
         let textEl = bio.querySelector('.bio-text');
         if (!textEl) { textEl = document.createElement('p'); textEl.className='bio-text'; bio.prepend(textEl); }
-        textEl.textContent = teaser;
-        textEl.classList.add('collapsed');
-        bio.classList.remove('expanded');
 
-        const toggle = bio.querySelector('.bio-toggle');
-        if (toggle) {
-          toggle.textContent = 'Text erweitern';
-          toggle.setAttribute('aria-expanded', 'false');
-          toggle.addEventListener('click', (e)=>{
-            e.stopPropagation();
-            const expanded = bio.classList.toggle('expanded');
-            if (expanded) {
-              textEl.classList.remove('collapsed');
-              textEl.innerHTML = fullHTML;
-              toggle.textContent = 'Text einklappen';
-              toggle.setAttribute('aria-expanded', 'true');
-            } else {
-              textEl.classList.add('collapsed');
-              textEl.textContent = teaser;
-              toggle.textContent = 'Text erweitern';
-              toggle.setAttribute('aria-expanded', 'false');
-            }
-          });
-        }
+        setTeaser(textEl, teaser, fullHTML);
       });
     })
     .catch(()=>{
@@ -168,8 +171,7 @@ function stopCurrent() {
   if (currentAudio) {
     currentAudio.pause();
     currentAudio.currentTime = 0;
-    const btn = currentAudio._button;
-    if (btn) btn.dataset.state = 'play';
+    if (currentAudio._button) currentAudio._button.dataset.state = 'play';
     if (currentAudio._fill) currentAudio._fill.style.width = '0%';
     currentAudio = null;
   }
@@ -246,7 +248,6 @@ function initTracks(){
       playersEl.appendChild(row);
     });
 
-    // Panels toggeln + aktuelles stoppen, wenn nötig
     document.querySelectorAll('.album-panel').forEach(p=>{
       if (p!==panel) { if (!p.hidden) stopCurrent(); p.hidden = true; }
     });
@@ -257,7 +258,7 @@ function initTracks(){
   });
 }
 
-// ---------- Bootreihenfolge ----------
+// ---------- Boot ----------
 document.addEventListener('DOMContentLoaded', async ()=>{
   await includePartials();
   initMenu();
