@@ -40,11 +40,17 @@ if (btnOff && video) {
   });
 }
 
-/* video-fallback */
+/* video-fallback (setzt auf .video-wrap und #introVideo) */
 (function(){
-  const vid = $('#intro-video'); const hero = document.querySelector('.video-hero');
-  if (!vid || !hero) return;
-  const fallback = () => { if (!hero.classList.contains('video-hero--fallback')) { vid.remove(); hero.classList.add('video-hero--fallback'); } };
+  const wrap = document.querySelector('.video-wrap');
+  const vid  = document.querySelector('#introVideo');
+  if (!wrap || !vid) return;
+  const fallback = () => {
+    if (!wrap.classList.contains('video-hero--fallback')) {
+      vid.remove();
+      wrap.classList.add('video-hero--fallback');
+    }
+  };
   setTimeout(()=> { if (vid.readyState < 2 || vid.videoWidth === 0) fallback(); }, 1200);
   vid.addEventListener('error', fallback);
 })();
