@@ -102,14 +102,15 @@ document.addEventListener('click',(ev)=>{
   }
 });
 
-/* releases: toggle auf/zu (kein auto-schließen anderer) */
+/* releases: .release-summary toggelt das Panel (.release-panel) im selben .release-item */
 document.addEventListener('click',(ev)=>{
-  const mini = ev.target.closest('.release-mini');
-  if(!mini) return;
-  const id = mini.dataset.expand;
-  const panel = document.getElementById(id);
+  const summary = ev.target.closest('.release-summary');
+  if(!summary) return;
+  const item  = summary.closest('.release-item');
+  const panel = item ? item.querySelector('.release-panel') : null;
   if(!panel) return;
-  if (panel.hasAttribute('hidden')) panel.removeAttribute('hidden'); else panel.setAttribute('hidden','');
+  if (panel.hasAttribute('hidden')) panel.removeAttribute('hidden');
+  else panel.setAttribute('hidden','');
 });
 
 /* nur ein audio gleichzeitig */
