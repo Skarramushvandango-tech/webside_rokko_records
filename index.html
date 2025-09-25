@@ -1,269 +1,399 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>rokko! records</title>
-  <meta name="description" content="ROKKO! Records – Das kreative Musiklabel aus dem Ruhrpott."/>
-  <link rel="stylesheet" href="assets/css/style.css"/>
-  <link rel="icon" href="assets/images/logo.png"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ROKKO! Records</title>
+  <link rel="preload" href="assets/movies/intro_movie.mp4" as="video" type="video/mp4">
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-  <!-- header -->
+
+  <!-- Header -->
   <header class="site-header">
-    <div class="brand">
-      <img src="assets/images/logo.png" alt="rokko logo" class="brand__logo"/>
-      <div class="brand__title">
-        <span class="brand__top">ROKKO!</span>
-        <span class="brand__bottom">RECORDS</span>
-      </div>
+    <div class="header-inner">
+      <a class="brand" href="#intro" aria-label="ROKKO! Records Start">
+        <!-- mobiles Logo -->
+        <img class="logo mobile" src="assets/images/logo-96.png" alt="ROKKO! Records Logo klein" />
+        <!-- Desktop Logo -->
+        <img class="logo desktop" src="assets/images/logo.png" alt="ROKKO! Records Logo" />
+        <div class="brand-text">
+          <span>ROKKO! Records</span>
+          <span>ROKKO! Records</span>
+        </div>
+      </a>
+
+      <button class="burger" aria-label="Menü öffnen" aria-controls="main-nav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="main-nav" class="nav">
+        <a href="#intro">Intro</a>
+        <a href="#releases">Aktuelle Releases</a>
+        <a href="#artists">Artists</a>
+        <a href="#artist-henri">Henri Bellieu</a>
+        <a href="#artist-erling">Markus Erling</a>
+        <a href="#artist-fleur">Fleur et Beunié</a>
+        <a href="#artist-skank">Skank Schablonski</a>
+        <a href="#artist-skaramush">SkaRamush Vandango</a>
+        <a href="#comment">Kommentarfeld</a>
+      </nav>
     </div>
-
-    <button class="burger" aria-label="menü öffnen" aria-expanded="false" aria-controls="site-nav">
-      <span></span><span></span><span></span>
-    </button>
-
-    <nav id="site-nav" class="site-nav" hidden>
-      <a href="#releases">Aktuelle Releases</a>
-      <a href="#artists">Artists</a>
-      <a href="#artist-henri">Henri Bellieu</a>
-      <a href="#artist-erling">Markus Erling</a>
-      <a href="#artist-fleur">Fleur &amp; Beunié</a>
-      <a href="#artist-skank">Skank Schablonski</a>
-      <a href="#artist-skaramush">SkaRamush Vandango</a>
-      <a href="#comment">Kommentarfeld</a>
-    </nav>
   </header>
 
-  <!-- intro-video -->
-  <section class="video-hero">
-    <video id="intro-video" class="video-hero__media"
-           src="assets/movies/intro_movie.mp4"
-           poster="assets/images/wlpnologo.png"
-           autoplay muted playsinline loop></video>
-    <button id="sound-toggle" class="sound-toggle" aria-pressed="true" aria-label="sound ein/aus">Sound: aus</button>
-  </section>
+  <main>
 
-  <!-- willkommen unter dem video -->
-  <section id="about" class="card">
-    <div class="headline wallpaper no-logo">
-      <h2>Wir sind ROKKO! Records – und Du „noch“ nicht …</h2>
+    <!-- Intro -->
+    <section id="intro" class="section">
+      <div class="video-wrap">
+        <video id="introVideo" class="intro-video" playsinline muted autoplay loop>
+          <source src="assets/movies/intro_movie.mp4" type="video/mp4" />
+          Dein Browser unterstützt das Video-Format nicht.
+        </video>
+
+        <!-- halbtransparenter Text unten rechts, nur Text + Rahmen -->
+        <div class="video-badge">Intro</div>
+
+        <!-- Start/Stop für den Sound (Video startet stumm) -->
+        <div class="video-sound-controls" aria-label="Video-Sound-Steuerung">
+          <button type="button" class="btn-sound-on">Sound AN</button>
+          <button type="button" class="btn-sound-off">Sound AUS</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Headline: Aktuelle Releases -->
+    <div id="releases" class="headline-card" role="heading" aria-level="2" data-bg="wlplogo">
+      <span>Aktuelle Releases</span>
     </div>
-    <div class="inner" id="about-text" data-bio-id="bio-label">
-      <p>Wir sind ROKKO! Records – und Du „noch“ nicht … Tach, wir sind die Neuen in der Szene. Und wir sind ein bisschen anders, das ist aber auch gut so. Wir jagen nicht den Fame und sonnen uns auch nicht im Applaus. Wir haben kein Genre, wir engen uns nicht ein. Die Songs und Artists sind jeglicher Couleur und eines ist sicher! • Es wird auf keinen Fall langweilig. ROKKO! Records Herz schlägt im Ruhrpott, doch die Musik reicht weiter. ROKKO! Records ist kein Genre, keine Sprache oder Farbe. ROKKO! Records ist geballte kreative Freiheit, die ins Ohr geht und von dort nicht mehr wegzubekommen ist. Also kloppt Euch den Schmalz aus den Ohren, hier kommt der Honig …</p>
+
+    <!-- Placeholder-Card für spätere inhaltliche Befüllung -->
+    <section class="section">
+      <div class="card">
+        <p>comming soon</p>
+      </div>
+    </section>
+
+    <!-- Headline: Artists -->
+    <div id="artists" class="headline-card" role="heading" aria-level="2" data-bg="wlplogo">
+      <span>Artists</span>
     </div>
-  </section>
 
-  <!-- releases -->
-  <section id="releases" class="card">
-    <div class="headline wallpaper no-logo"><h2>Aktuelle Releases</h2></div>
-    <div class="inner"><p><em>Coming soon</em></p></div>
-  </section>
+    <!-- ============ ARTIST: HENRI BELLIEU ============ -->
+    <section id="artist-henri" class="section artist-card">
+      <div class="headline-card slim" data-bg="wlplogo"><span>Artists</span></div>
 
-  <!-- artists-headline (minimal) -->
-  <section id="artists" class="card">
-    <div class="headline wallpaper no-logo"><h2>Artists</h2></div>
-    <div class="inner"></div>
-  </section>
+      <img class="artist-photo" src="artists/henri_bellieu/fotos/henri_main.png" alt="Henri Bellieu" />
 
-  <!-- artist: henri bellieu -->
-  <section id="artist-henri" class="card artist">
-    <div class="headline wallpaper no-logo"><h3>Biografie</h3></div>
-    <div class="inner">
-      <img class="artist__photo" src="artists/henri_bellieu/fotos/henri_main.png" alt="Henri Bellieu"/>
+      <h3 class="subhead">Biografie</h3>
       <div class="bio" data-bio-id="bio-henri">
-        <p class="bio-preview"></p>
+        <div class="bio-teaser"><!-- JS lädt 1. Absatz aus assets/data/bios.html --></div>
+        <button type="button" class="bio-toggle" aria-expanded="false">Text erweitern</button>
         <div class="bio-full" hidden></div>
-        <button class="bio-toggle" aria-expanded="false"><b>… Text erweitern</b></button>
       </div>
 
       <div class="releases">
-        <div class="release-mini" data-expand="hb-petite">
-          <img src="artists/henri_bellieu/cover/petite_colibri.png" alt="Petite Colibri" class="mini"/>
-          <div class="title">Petite Colibri</div>
-        </div>
-        <div id="hb-petite" class="release-panel" hidden>
-          <div class="cover-lg"><img src="artists/henri_bellieu/cover/petite_colibri.png" alt="Petite Colibri groß"/></div>
-          <ul class="tracks">
-            <li><span>Petite Colibri - Original Mix</span><audio controls preload="none" data-track><source src="artists/henri_bellieu/audio_files/petitecolibri/petite_colibri_main.m4a" type="audio/mp4"></audio></li>
-            <li><span>Petite Colibri - Ennio Mix</span><audio controls preload="none" data-track><source src="artists/henri_bellieu/audio_files/petitecolibri/petite_colibri_ennio_mix.m4a" type="audio/mp4"></audio></li>
-            <li><span>Petite Colibri - Nocturne Mix</span><audio controls preload="none" data-track><source src="artists/henri_bellieu/audio_files/petitecolibri/petite_colibri_nocturne_mix.m4a" type="audio/mp4"></audio></li>
-          </ul>
+        <!-- Release: Petite Colibri -->
+        <div class="release-item" data-release="henri-petite-colibri">
+          <div class="release-summary">
+            <img class="thumb" src="artists/henri_bellieu/cover/petite_colibri.png" alt="Petite Colibri Cover" />
+            <span class="title">Petite Colibri</span>
+          </div>
+          <div class="release-panel" hidden>
+            <img class="cover-large" src="artists/henri_bellieu/cover/petite_colibri.png" alt="Petite Colibri Cover groß" />
+            <ul class="tracklist">
+              <li>
+                <span>Petite Colibri - Original Mix</span>
+                <audio preload="none" controls class="media">
+                  <source src="artists/henri_bellieu/audio_files/petitecolibri/petite_colibri_main.m4a" type="audio/mp4" />
+                </audio>
+              </li>
+              <li>
+                <span>Petite Colibri - Ennio Mix</span>
+                <audio preload="none" controls class="media">
+                  <source src="artists/henri_bellieu/audio_files/petitecolibri/petite_colibri_ennio_mix.m4a" type="audio/mp4" />
+                </audio>
+              </li>
+              <li>
+                <span>Petite Colibri - Nocturne Mix</span>
+                <audio preload="none" controls class="media">
+                  <source src="artists/henri_bellieu/audio_files/petitecolibri/petite_colibri_nocturne_mix.m4a" type="audio/mp4" />
+                </audio>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div class="release-mini" data-expand="hb-femme">
-          <img src="artists/henri_bellieu/cover/la_femme.png" alt="La Femme" class="mini"/>
-          <div class="title">La Femme</div>
-        </div>
-        <div id="hb-femme" class="release-panel" hidden>
-          <div class="cover-lg"><img src="artists/henri_bellieu/cover/la_femme.png" alt="La Femme groß"/></div>
-          <ul class="tracks">
-            <li><span>La Femme - Original Mix</span><audio controls preload="none" data-track><source src="artists/henri_bellieu/audio_files/lafemme/la_femme_main.m4a" type="audio/mp4"></audio></li>
-            <li><span>La Femme - Deux Mix</span><audio controls preload="none" data-track><source src="artists/henri_bellieu/audio_files/lafemme/la_femme_deux.m4a" type="audio/mp4"></audio></li>
-          </ul>
+        <!-- Release: La Femme -->
+        <div class="release-item" data-release="henri-la-femme">
+          <div class="release-summary">
+            <img class="thumb" src="artists/henri_bellieu/cover/la_femme.png" alt="La Femme Cover" />
+            <span class="title">La Femme</span>
+          </div>
+          <div class="release-panel" hidden>
+            <img class="cover-large" src="artists/henri_bellieu/cover/la_femme.png" alt="La Femme Cover groß" />
+            <ul class="tracklist">
+              <li>
+                <span>La Femme - Original Mix</span>
+                <audio preload="none" controls class="media">
+                  <source src="artists/henri_bellieu/audio_files/lafemme/la_femme_main.m4a" type="audio/mp4" />
+                </audio>
+              </li>
+              <li>
+                <span>La Femme - Deux Mix</span>
+                <audio preload="none" controls class="media">
+                  <source src="artists/henri_bellieu/audio_files/lafemme/la_femme_deux.m4a" type="audio/mp4" />
+                </audio>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- einzige logo-wallpaper kachel -->
-  <section class="card">
-    <div class="headline wallpaper logo" aria-hidden="true">
-      <h2 class="visually-hidden">ROKKO! Records</h2>
-    </div>
-    <div class="inner"></div>
-  </section>
+    <!-- ============ ARTIST: MARKUS ERLING ============ -->
+    <section id="artist-erling" class="section artist-card">
+      <div class="headline-card slim" data-bg="wlplogo"><span>Artists</span></div>
 
-  <!-- artist: markus erling -->
-  <section id="artist-erling" class="card artist">
-    <div class="headline wallpaper no-logo"><h3>Biografie</h3></div>
-    <div class="inner">
-      <img class="artist__photo" src="artists/erling/fotos/erling_main.png" alt="Markus Erling"/>
+      <img class="artist-photo" src="artists/erling/fotos/erling_main.png" alt="Markus Erling" />
+
+      <h3 class="subhead">Biografie</h3>
       <div class="bio" data-bio-id="bio-erling">
-        <p class="bio-preview"></p>
+        <div class="bio-teaser"></div>
+        <button type="button" class="bio-toggle" aria-expanded="false">Text erweitern</button>
         <div class="bio-full" hidden></div>
-        <button class="bio-toggle" aria-expanded="false"><b>… Text erweitern</b></button>
       </div>
 
       <div class="releases">
-        <div class="release-mini" data-expand="er-regnet">
-          <img src="artists/erling/cover/regen_cover.png" alt="Tag an dem es regnet" class="mini"/>
-          <div class="title">Tag an dem es regnet</div>
-        </div>
-        <div id="er-regnet" class="release-panel" hidden>
-          <div class="cover-lg"><img src="artists/erling/cover/regen_cover.png" alt="Regnet groß"/></div>
-          <ul class="tracks">
-            <li><span>Tag an dem es regnet - Original Mix</span><audio controls preload="none" data-track><source src="artists/erling/audio_files/tagregnet/regnet_main.m4a" type="audio/mp4"></audio></li>
-            <li><span>Tag an dem es regnet - RMX</span><audio controls preload="none" data-track><source src="artists/erling/audio_files/tagregnet/regnet_rmx.m4a" type="audio/mp4"></audio></li>
-          </ul>
+        <!-- Release: Tag an dem es regnet -->
+        <div class="release-item" data-release="erling-tag-regnet">
+          <div class="release-summary">
+            <img class="thumb" src="artists/erling/cover/regen_cover.png" alt="Tag an dem es regnet Cover" />
+            <span class="title">Tag an dem es regnet</span>
+          </div>
+          <div class="release-panel" hidden>
+            <img class="cover-large" src="artists/erling/cover/regen_cover.png" alt="Tag an dem es regnet Cover groß" />
+            <ul class="tracklist">
+              <li>
+                <span>Tag an dem es regnet - Original Mix</span>
+                <audio preload="none" controls class="media">
+                  <source src="artists/erling/audio_files/tagregnet/regnet_main.m4a" type="audio/mp4" />
+                </audio>
+              </li>
+              <li>
+                <span>Tag an dem es regnet - RMX</span>
+                <audio preload="none" controls class="media">
+                  <source src="artists/erling/audio_files/tagregnet/regnet_rmx.m4a" type="audio/mp4" />
+                </audio>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div class="release-mini" data-expand="er-schlafen">
-          <img src="artists/erling/cover/endlich_schlafen_cover.png" alt="Endlich schlafen" class="mini"/>
-          <div class="title">Endlich schlafen</div>
-        </div>
-        <div id="er-schlafen" class="release-panel" hidden>
-          <div class="cover-lg"><img src="artists/erling/cover/endlich_schlafen_cover.png" alt="Endlich schlafen groß"/></div>
-          <ul class="tracks">
-            <li><span>Endlich schlafen - Original Mix</span><audio controls preload="none" data-track><source src="artists/erling/audio_files/schlafen/endlich_schlafen_main.m4a" type="audio/mp4"></audio></li>
-            <li><span>Endlich schlafen - MonoToni RMX</span><audio controls preload="none" data-track><source src="artists/erling/audio_files/schlafen/endlich_schlafen_monotoni.m4a" type="audio/mp4"></audio></li>
-          </ul>
+        <!-- Release: Endlich Schlafen -->
+        <div class="release-item" data-release="erling-endlich-schlafen">
+          <div class="release-summary">
+            <img class="thumb" src="artists/erling/cover/endlich_schlafen_cover.png" alt="Endlich Schlafen Cover" />
+            <span class="title">Endlich Schlafen</span>
+          </div>
+          <div class="release-panel" hidden>
+            <img class="cover-large" src="artists/erling/cover/endlich_schlafen_cover.png" alt="Endlich Schlafen Cover groß" />
+            <ul class="tracklist">
+              <li>
+                <span>endlich schlafen - Original Mix</span>
+                <audio preload="none" controls class="media">
+                  <source src="artists/erling/audio_files/schlafen/endlich_schlafen_main.m4a" type="audio/mp4" />
+                </audio>
+              </li>
+              <li>
+                <span>endlich schlafen - MonoToni RMX</span>
+                <audio preload="none" controls class="media">
+                  <source src="artists/erling/audio_files/schlafen/endlich_schlafen_monotoni.m4a" type="audio/mp4" />
+                </audio>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
+      <!-- YouTube-Video (ganz unten im Artist-Rahmen) -->
       <div class="video-embed">
-        <iframe class="yt"
-          src="https://www.youtube.com/embed/Rh53YVgsfJ4?si=7IsePkQZbPZqOBvR"
-          title="YouTube video" frameborder="0"
+        <iframe
+          title="Markus Erling - YouTube"
+          src="https://www.youtube.com/embed/Rh53YVgsfJ4"
+          loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen></iframe>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- artist: fleur & beunié -->
-  <section id="artist-fleur" class="card artist">
-    <div class="headline wallpaper no-logo"><h3>Biografie</h3></div>
-    <div class="inner">
-      <img class="artist__photo" src="artists/fleur_et_beunie/fotos/fleurbenuie_main.png" alt="Fleur &amp; Beunié"/>
+    <!-- ============ ARTIST: FLEUR ET BEUNIÉ ============ -->
+    <section id="artist-fleur" class="section artist-card">
+      <div class="headline-card slim" data-bg="wlplogo"><span>Artists</span></div>
+
+      <img class="artist-photo" src="artists/fleur_et_beunie/fotos/fleurbenuie_main.png" alt="Fleur et Beunié" />
+
+      <h3 class="subhead">Biografie</h3>
       <div class="bio" data-bio-id="bio-fleur">
-        <p class="bio-preview"></p>
+        <div class="bio-teaser"></div>
+        <button type="button" class="bio-toggle" aria-expanded="false">Text erweitern</button>
         <div class="bio-full" hidden></div>
-        <button class="bio-toggle" aria-expanded="false"><b>… Text erweitern</b></button>
       </div>
 
       <div class="releases">
-        <div class="release-mini" data-expand="fb-feu">
-          <img src="artists/fleur_et_beunie/cover/feu_leger_cover.png" alt="Feu Léger" class="mini"/>
-          <div class="title">Feu Léger</div>
-        </div>
-        <div id="fb-feu" class="release-panel" hidden>
-          <div class="cover-lg"><img src="artists/fleur_et_beunie/cover/feu_leger_cover.png" alt="Feu Léger groß"/></div>
-          <ul class="tracks">
-            <li><span>Feu Léger - Original Mix</span><audio controls preload="none" data-track><source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_main.m4a" type="audio/mp4"></audio></li>
-            <li><span>Feu Léger - Sundown Mix</span><audio controls preload="none" data-track><source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_sundown_mix.m4a" type="audio/mp4"></audio></li>
-            <li><span>Feu Léger - House Mix</span><audio controls preload="none" data-track><source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_house_mix.m4a" type="audio/mp4"></audio></li>
-            <li><span>Feu Léger - Club Mix</span><audio controls preload="none" data-track><source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_club_mix.m4a" type="audio/mp4"></audio></li>
-            <li><span>Feu Léger - Classic Mix</span><audio controls preload="none" data-track><source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_french_classic_mix.m4a" type="audio/mp4"></audio></li>
-          </ul>
+        <!-- Release: Feu Léger -->
+        <div class="release-item" data-release="fleur-feu-leger">
+          <div class="release-summary">
+            <img class="thumb" src="artists/fleur_et_beunie/cover/feu_leger_cover.png" alt="Feu Léger Cover" />
+            <span class="title">Feu Léger</span>
+          </div>
+          <div class="release-panel" hidden>
+            <img class="cover-large" src="artists/fleur_et_beunie/cover/feu_leger_cover.png" alt="Feu Léger Cover groß" />
+            <ul class="tracklist">
+              <li>
+                <span>Feu Léger - Original Mix</span>
+                <audio preload="none" controls class="media">
+                  <source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_main.m4a" type="audio/mp4" />
+                </audio>
+              </li>
+              <li>
+                <span>Feu Léger - Sundown Mix</span>
+                <audio preload="none" controls class="media">
+                  <source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_sundown_mix.m4a" type="audio/mp4" />
+                </audio>
+              </li>
+              <li>
+                <span>Feu Léger - House Mix</span>
+                <audio preload="none" controls class="media">
+                  <source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_house_mix.m4a" type="audio/mp4" />
+                </audio>
+              </li>
+              <li>
+                <span>Feu Léger - Club Mix</span>
+                <audio preload="none" controls class="media">
+                  <source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_club_mix.m4a" type="audio/mp4" />
+                </audio>
+              </li>
+              <li>
+                <span>Feu Léger - Classic Mix</span>
+                <audio preload="none" controls class="media">
+                  <source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_french_classic_mix.m4a" type="audio/mp4" />
+                </audio>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- artist: skank schablonski -->
-  <section id="artist-skank" class="card artist">
-    <div class="headline wallpaper no-logo"><h3>Biografie</h3></div>
-    <div class="inner">
-      <img class="artist__photo" src="artists/skank_schablonski/fotos/skank_main.png" alt="Skank Schablonski"/>
+    <!-- ============ ARTIST: SKANK SCHABLONSKI ============ -->
+    <section id="artist-skank" class="section artist-card">
+      <div class="headline-card slim" data-bg="wlplogo"><span>Artists</span></div>
+
+      <img class="artist-photo" src="artists/skank_schablonski/fotos/skank_main.png" alt="Skank Schablonski" />
+
+      <h3 class="subhead">Biografie</h3>
       <div class="bio" data-bio-id="bio-skank">
-        <p class="bio-preview"></p>
+        <div class="bio-teaser"></div>
+        <button type="button" class="bio-toggle" aria-expanded="false">Text erweitern</button>
         <div class="bio-full" hidden></div>
-        <button class="bio-toggle" aria-expanded="false"><b>… Text erweitern</b></button>
       </div>
 
       <div class="releases">
-        <div class="release-mini" data-expand="sk-kohle">
-          <img src="artists/skank_schablonski/cover/kohle_raus_cover.png" alt="Kohle raus" class="mini"/>
-          <div class="title">Kohle raus</div>
-        </div>
-        <div id="sk-kohle" class="release-panel" hidden>
-          <div class="cover-lg"><img src="artists/skank_schablonski/cover/kohle_raus_cover.png" alt="Kohle raus groß"/></div>
-          <ul class="tracks">
-            <li><span>Kohle raus - Original Mix</span><audio controls preload="none" data-track><source src="artists/skank_schablonski/audio_files/kohle_raus/kohle_raus_main.m4a" type="audio/mp4"></audio></li>
-            <li><span>Kohle raus - RMX</span><audio controls preload="none" data-track><source src="artists/skank_schablonski/audio_files/kohle_raus/kohle_raus_rmx.m4a" type="audio/mp4"></audio></li>
-          </ul>
+        <div class="release-item" data-release="skank-kohle-raus">
+          <div class="release-summary">
+            <img class="thumb" src="artists/skank_schablonski/cover/kohle_raus_cover.png" alt="Kohle raus Cover" />
+            <span class="title">Kohle raus</span>
+          </div>
+          <div class="release-panel" hidden>
+            <img class="cover-large" src="artists/skank_schablonski/cover/kohle_raus_cover.png" alt="Kohle raus Cover groß" />
+            <ul class="tracklist">
+              <li>
+                <span>Kohle raus - Original Mix</span>
+                <audio preload="none" controls class="media">
+                  <source src="artists/skank_schablonski/audio_files/kohle_raus/kohle_raus_main.m4a" type="audio/mp4" />
+                </audio>
+              </li>
+              <li>
+                <span>Kohle raus - RMX</span>
+                <audio preload="none" controls class="media">
+                  <source src="artists/skank_schablonski/audio_files/kohle_raus/kohle_raus_rmx.m4a" type="audio/mp4" />
+                </audio>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- artist: skaramush vandango -->
-  <section id="artist-skaramush" class="card artist">
-    <div class="headline wallpaper no-logo"><h3>Biografie</h3></div>
-    <div class="inner">
-      <img class="artist__photo" src="artists/skaramush_vandango/fotos/skaramush_main.png" alt="SkaRamush Vandango"/>
+    <!-- ============ ARTIST: SKARAMUSH VANDANGO ============ -->
+    <section id="artist-skaramush" class="section artist-card">
+      <div class="headline-card slim" data-bg="wlplogo"><span>Artists</span></div>
+
+      <img class="artist-photo" src="artists/skaramush_vandango/fotos/skaramush_main.png" alt="SkaRamush Vandango" />
+
+      <h3 class="subhead">Biografie</h3>
       <div class="bio" data-bio-id="bio-skaramush">
-        <p class="bio-preview"></p>
+        <div class="bio-teaser"></div>
+        <button type="button" class="bio-toggle" aria-expanded="false">Text erweitern</button>
         <div class="bio-full" hidden></div>
-        <button class="bio-toggle" aria-expanded="false"><b>… Text erweitern</b></button>
       </div>
 
       <div class="releases">
-        <div class="release-mini" data-expand="sv-fire">
-          <img src="artists/skaramush_vandango/cover/cover_fire.png" alt="Set the world on Fire" class="mini"/>
-          <div class="title">Set the world on Fire</div>
-        </div>
-        <div id="sv-fire" class="release-panel" hidden>
-          <div class="cover-lg"><img src="artists/skaramush_vandango/cover/cover_fire.png" alt="Set the world on Fire groß"/></div>
-          <ul class="tracks">
-            <li><span>Set the world on Fire - Original Mix</span><audio controls preload="none" data-track><source src="artists/skaramush_vandango/audio_files/set_fire/set_on_fire_original.m4a" type="audio/mp4"></audio></li>
-            <li><span>Set the world on Fire - RMX</span><audio controls preload="none" data-track><source src="artists/skaramush_vandango/audio_files/set_fire/set_on_fire_rmx.m4a" type="audio/mp4"></audio></li>
-          </ul>
+        <div class="release-item" data-release="skaramush-fire">
+          <div class="release-summary">
+            <img class="thumb" src="artists/skaramush_vandango/cover/cover_fire.png" alt="Set the world on Fire Cover" />
+            <span class="title">Set the world on Fire</span>
+          </div>
+          <div class="release-panel" hidden>
+            <img class="cover-large" src="artists/skaramush_vandango/cover/cover_fire.png" alt="Set the world on Fire Cover groß" />
+            <ul class="tracklist">
+              <li>
+                <span>Set the world on Fire - Original Mix</span>
+                <audio preload="none" controls class="media">
+                  <source src="artists/skaramush_vandango/audio_files/set_fire/set_on_fire_original.m4a" type="audio/mp4" />
+                </audio>
+              </li>
+              <li>
+                <span>Set the world on Fire - RMX</span>
+                <audio preload="none" controls class="media">
+                  <source src="artists/skaramush_vandango/audio_files/set_fire/set_on_fire_rmx.m4a" type="audio/mp4" />
+                </audio>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
+    </section>
+
+    <!-- Headline: Kommentarfeld -->
+    <div id="comment" class="headline-card" role="heading" aria-level="2" data-bg="wlpnologo">
+      <span>Kommentarfeld</span>
     </div>
-  </section>
 
-  <!-- kommentarfeld -->
-  <section id="comment" class="card">
-    <div class="headline wallpaper no-logo"><h2>Kommentarfeld</h2></div>
-    <div class="inner">
-      <form class="comment-form" id="comment-form" autocomplete="off">
-        <label class="field">
-          <span>Deine Nachricht</span>
-          <textarea id="comment-text" rows="6" placeholder="kurz, ehrlich, ohne floskeln."></textarea>
-        </label>
-        <button type="submit" class="btn" id="comment-send">Absenden</button>
-        <p class="hint">Hinweis: Versand per E-Mail sobald Zieladresse gesetzt ist.</p>
-      </form>
-    </div>
-  </section>
+    <!-- Kommentarfeld-Card (Headline lebt im gleichen Card) -->
+    <section class="section">
+      <div class="card contact-card">
+        <form class="comment-form" action="#" method="post" novalidate>
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" autocomplete="name" />
+          </label>
+          <label>
+            <span>E-Mail</span>
+            <input type="email" name="email" autocomplete="email" />
+          </label>
+          <label>
+            <span>Nachricht</span>
+            <textarea name="message" rows="5"></textarea>
+          </label>
+          <button type="submit" class="btn-submit">Senden</button>
+        </form>
+      </div>
+    </section>
 
-  <footer class="footer">
-    &copy; 2025 ROKKO! Records · Ruhrpott
-  </footer>
+  </main>
 
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/site.js" defer></script>
 </body>
 </html>
