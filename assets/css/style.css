@@ -37,27 +37,40 @@ body{
 .brand__top{display:block;font-weight:800;font-size:20px;line-height:1.05;color:var(--text)}
 .brand__bottom{display:block;font-weight:800;font-size:12px;letter-spacing:1.6px;color:var(--text);text-transform:uppercase}
 
-/* burger + nav */
+/* BURGER + NAV */
 .burger{background:transparent;border:0;display:flex;flex-direction:column;gap:4px;padding:6px;cursor:pointer}
 .burger span{width:22px;height:2px;background:var(--text)}
-.site-nav{
-  position:absolute;right:10px;top:56px;background:var(--brown);
-  border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:6px
-}
-.site-nav a{color:var(--text);text-decoration:none;font-weight:400}
 
-/* video */
-.video-hero{position:relative; background:var(--brown); min-height:40vh;}
-.video-hero__media{width:100%;display:block}
+/* passt zu <nav id="main-nav" class="nav"> */
+.nav{
+  position:absolute;right:10px;top:56px;background:var(--brown);
+  border-radius:10px;padding:10px;display:none;flex-direction:column;gap:6px
+}
+.nav a{color:var(--text);text-decoration:none;font-weight:400}
+.nav.is-open{display:flex}
+
+/* INTRO VIDEO */
+.video-wrap{position:relative; background:var(--brown); min-height:40vh;}
+.intro-video{width:100%;display:block}
+/* halbtransparenter Text unten rechts */
+.video-badge{
+  position:absolute; right:10px; bottom:56px;
+  background:rgba(52,47,47,.6); color:var(--text);
+  border:var(--outline-w) solid var(--outline); border-radius:10px; padding:6px 10px;
+}
+/* Sound-Buttons unten rechts */
+.video-sound-controls{
+  position:absolute; right:10px; bottom:10px;
+  background:rgba(52,47,47,.6); color:var(--text);
+  border:var(--outline-w) solid var(--outline); border-radius:10px; padding:6px 10px;
+}
+.video-sound-controls button{background:transparent;border:0;color:inherit;cursor:pointer}
+
+/* optionaler Fallback kann bleiben */
 .video-hero--fallback{
   display:flex; align-items:center; justify-content:center;
   background:url("../images/wlpnologo.png") center/cover no-repeat, var(--brown);
   min-height:40vh;
-}
-.sound-toggle{
-  position:absolute; right:10px; bottom:10px;
-  background:rgba(52,47,47,.6); color:var(--text);
-  border:var(--outline-w) solid var(--outline); border-radius:10px; padding:6px 10px;
 }
 
 /* cards */
