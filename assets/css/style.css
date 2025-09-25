@@ -108,9 +108,8 @@ body{
   clip:rect(1px,1px,1px,1px); white-space:nowrap;
 }
 
-/* artist */
-.artist__photo{border-radius:10px; margin-bottom:12px}
-
+/* ARTIST */
+.artist-photo{border-radius:10px; margin-bottom:12px}
 /* bio: button immer sichtbar, preview begrenzt */
 .bio{
   position:relative;
