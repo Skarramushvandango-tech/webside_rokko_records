@@ -110,28 +110,6 @@ body{
 
 /* ARTIST */
 .artist-photo{border-radius:10px; margin-bottom:12px}
-/* bio: button immer sichtbar, preview begrenzt */
-.bio{
-  position:relative;
-  padding:8px 72px 8px 0; /* platz für button rechts */
-  margin-bottom:6px;
-}
-.bio-preview{
-  display:block;
-  overflow:hidden;
-  max-height:4.5em; /* ~3 zeilen */
-  line-height:1.5;
-  text-overflow:ellipsis;
-  white-space:normal;
-}
-.bio-toggle{
-  position:absolute; top:8px; right:10px;
-  background:transparent; border:0; color:var(--text);
-  cursor:pointer; padding:6px 8px; font-weight:700;
-}
-.bio-full{margin-top:10px}
-.bio-full[hidden]{display:none}
-
 /* RELEASES */
 .releases{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:10px}
 .release-summary{
