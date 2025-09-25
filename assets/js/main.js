@@ -1,135 +1,159 @@
 /* delivered-per-instruction */
-const EMAIL_TO = ""; // später setzen
+const EMAIL_TO = ""; // später setzen (mailto-Fallback)
 
-const $ = sel => document.querySelector(sel);
-const $$ = sel => Array.from(document.querySelectorAll(sel));
+/* Kurz-Utils */
+const $  = (sel) => document.querySelector(sel);
+const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
-/* burger-menü (passt zu <nav id="main-nav" class="nav"> + .nav.is-open in CSS) */
-const burger = document.querySelector('.burger');
-const nav = document.querySelector('#main-nav');
-if (burger && nav) {
+/* Burger-Menü – arbeitet mit <nav id="site-nav" hidden> */
+(() => {
+  const burger = $('.burger');
+  const nav = $('#site-nav');
+  if (!burger || !nav) return;
+
   burger.addEventListener('click', () => {
-    const open = nav.classList.toggle('is-open');
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-}
-/* intro-video sound toggle (passt zu #introVideo und .video-sound-controls mit 2 Buttons) */
-const video = document.querySelector('#introVideo');
-const btnOn  = document.querySelector('.btn-sound-on');
-const btnOff = document.querySelector('.btn-sound-off');
-
-function updateSoundButtons() {
-  if (!btnOn || !btnOff || !video) return;
-  btnOn.setAttribute('aria-pressed', String(!video.muted));
-  btnOff.setAttribute('aria-pressed', String(video.muted));
-}
-
-if (video) { video.muted = true; updateSoundButtons(); }
-
-if (btnOn && video) {
-  btnOn.addEventListener('click', () => {
-    video.muted = false;
-    updateSoundButtons();
-    if (video.paused) video.play().catch(()=>{});
-  });
-}
-if (btnOff && video) {
-  btnOff.addEventListener('click', () => {
-    video.muted = true;
-    updateSoundButtons();
-  });
-}
-
-/* video-fallback (setzt auf .video-wrap und #introVideo) */
-(function(){
-  const wrap = document.querySelector('.video-wrap');
-  const vid  = document.querySelector('#introVideo');
-  if (!wrap || !vid) return;
-  const fallback = () => {
-    if (!wrap.classList.contains('video-hero--fallback')) {
-      vid.remove();
-      wrap.classList.add('video-hero--fallback');
+    const open = !nav.hasAttribute('hidden');
+    if (open) {
+      nav.setAttribute('hidden','');
+      burger.setAttribute('aria-expanded','false');
+    } else {
+      nav.removeAttribute('hidden');
+      burger.setAttribute('aria-expanded','true');
     }
-  };
-  setTimeout(()=> { if (vid.readyState < 2 || vid.videoWidth === 0) fallback(); }, 1200);
-  vid.addEventListener('error', fallback);
+  });
+
+  /* Auto-close beim Klick auf Link */
+  nav.addEventListener('click', (e)=>{
+    if (e.target.tagName === 'A') {
+      nav.setAttribute('hidden','');
+      burger.setAttribute('aria-expanded','false');
+    }
+  });
 })();
 
-/* bios laden (passt zu .bio .bio-teaser .bio-full, data-bio-id=...) */
-(async function loadBios(){
+/* Intro-Video: Play/Pause + Mute (iOS sicher) */
+(() => {
+  const video = $('#introVideo');
+  const btnPlayPause = $('#btnPlayPause');
+  const btnMute = $('#btnMute');
+  if (!video) return;
+
+  video.muted = true;                 // Autoplay auf iOS nur stumm
+  video.play().catch(()=>{});         // ok, falls User-Geste fehlt
+
+  btnPlayPause?.addEventListener('click', ()=>{
+    if (video.paused) { video.play().catch(()=>{}); } else { video.pause(); }
+  });
+
+  btnMute?.addEventListener('click', ()=>{
+    video.muted = !video.muted;
+    // Button-Text bleibt neutral, keine Dynamik nötig
+  });
+})();
+
+/* Nur ein Audio gleichzeitig */
+document.addEventListener('play',(ev)=>{
+  if (ev.target.tagName !== 'AUDIO') return;
+  $$('audio').forEach(a => { if (a !== ev.target) a.pause(); });
+}, true);
+
+/* Tracks: .track-mini toggelt eigenes .track-drop, schließt andere */
+(() => {
+  function closeAllDrops(exceptId){
+    $$('.track-drop').forEach(el=>{
+      if (el.id !== exceptId) el.setAttribute('hidden','');
+    });
+  }
+  document.addEventListener('click',(ev)=>{
+    const mini = ev.target.closest('.track-mini');
+    if (!mini) return;
+    const targetId = mini.getAttribute('data-target');
+    const drop = targetId ? $('#'+CSS.escape(targetId)) : null;
+    if (!drop) return;
+    const isHidden = drop.hasAttribute('hidden');
+    closeAllDrops(targetId);
+    if (isHidden) drop.removeAttribute('hidden'); else drop.setAttribute('hidden','');
+  });
+})();
+
+/* BIOS laden – erzeugt teaser/full dynamisch + Mapping für Skank/Skaramush */
+(async () => {
   try{
     const res = await fetch('assets/data/bios.html', {cache:'no-store'});
     if(!res.ok) return;
     const html = await res.text();
     const tmp = document.createElement('div'); tmp.innerHTML = html;
 
+    const idMap = (id) => {
+      if (id === 'bio-skank') return '#bio-schablonski';
+      if (id === 'bio-skara') return '#bio-skaramush';
+      return '#'+id; // bio-erling, bio-henri, bio-fleur direkt
+    };
+
     document.querySelectorAll('.bio[data-bio-id]').forEach(box=>{
       const id  = box.dataset.bioId;
-      const src = tmp.querySelector('#'+CSS.escape(id));
+      const src = tmp.querySelector(idMap(id));
       if(!src) return;
+
       const paras = Array.from(src.querySelectorAll('p'));
       if(paras.length===0) return;
 
-      const teaser = box.querySelector('.bio-teaser');
-      const full   = box.querySelector('.bio-full');
+      // Teaser = erster Absatz + „… Text erweitern“
+      const teaser = document.createElement('div');
+      teaser.className = 'bio-teaser';
+      teaser.innerHTML = `<p>${paras[0].innerHTML} … <span class="bio-toggle" aria-expanded="false"><b>Text erweitern</b></span></p>`;
 
-      if (teaser) {
-        teaser.textContent = paras[0].textContent.trim() + ' …';
-      }
-      if (full) {
-        full.innerHTML = paras.map(p=>`<p>${p.innerHTML}</p>`).join('');
-        full.setAttribute('hidden','');
-      }
+      // Full = alle Absätze, initial hidden
+      const full = document.createElement('div');
+      full.className = 'bio-full';
+      full.innerHTML = paras.map(p=>`<p>${p.innerHTML}</p>`).join('');
+      full.setAttribute('hidden','');
+
+      box.appendChild(teaser);
+      box.appendChild(full);
     });
   }catch(e){}
 })();
 
-/* bio toggle */
+/* Bio Toggle */
 document.addEventListener('click',(ev)=>{
   const btn = ev.target.closest('.bio-toggle');
   if(!btn) return;
   const box = btn.closest('.bio');
+  if(!box) return;
   const full = box.querySelector('.bio-full');
-  const expanded = btn.getAttribute('aria-expanded')==='true';
-  if(expanded){
+  if(!full) return;
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  if (expanded){
     full.setAttribute('hidden','');
     btn.setAttribute('aria-expanded','false');
     btn.innerHTML = '<b>… Text erweitern</b>';
-  }else{
+    box.scrollIntoView({behavior:'smooth', block:'start'});
+  } else {
     full.removeAttribute('hidden');
     btn.setAttribute('aria-expanded','true');
     btn.innerHTML = '<b>Text einklappen</b>';
   }
 });
 
-/* releases: .release-summary toggelt das Panel (.release-panel) im selben .release-item */
-document.addEventListener('click',(ev)=>{
-  const summary = ev.target.closest('.release-summary');
-  if(!summary) return;
-  const item  = summary.closest('.release-item');
-  const panel = item ? item.querySelector('.release-panel') : null;
-  if(!panel) return;
-  if (panel.hasAttribute('hidden')) panel.removeAttribute('hidden');
-  else panel.setAttribute('hidden','');
-});
-
-/* nur ein audio gleichzeitig */
-document.addEventListener('play',(ev)=>{
-  if(ev.target.tagName!=='AUDIO') return;
-  $$('audio').forEach(a=>{ if(a!==ev.target) a.pause(); });
-}, true);
-
-/* kommentar per mail (passt zu <form class="comment-form"> + <textarea name="message">) */
-const form = document.querySelector('.comment-form');
-if (form) {
-  form.addEventListener('submit', (e)=>{
+/* Kommentar per Mail (mailto-Fallback) */
+(() => {
+  const form = $('.comment-form');
+  if (!form) return;
+  form.addEventListener('submit',(e)=>{
     e.preventDefault();
-    const txtEl = form.querySelector('textarea[name="message"]');
-    const txt = txtEl ? txtEl.value.trim() : '';
-    if (!txt) return;
-    if (!EMAIL_TO) { alert('zieladresse fehlt.'); return; }
+    const name = $('#c-name')?.value?.trim() || '';
+    const msg  = $('#c-message')?.value?.trim() || '';
+    if (!msg){
+      alert('Bitte eine Nachricht eingeben.');
+      return;
+    }
+    if (!EMAIL_TO){
+      alert('Zieladresse fehlt. In assets/js/main.js EMAIL_TO setzen.');
+      return;
+    }
     const subject = encodeURIComponent('Nachricht von der ROKKO! Records Website');
-    const body = encodeURIComponent(txt);
+    const body = encodeURIComponent((name?(`Name: ${name}\n\n`):'') + msg);
     window.location.href = `mailto:${EMAIL_TO}?subject=${subject}&body=${body}`;
   });
-}
+})();
