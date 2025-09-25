@@ -62,12 +62,11 @@ body{
 
 /* cards */
 .card{
-  width:80%; max-width:1100px;
-  margin:calc(2 * var(--outline-w)) auto;
-  background:var(--brown); color:var(--text);
+  background:var(--brown);
+  color:var(--sand);
   border-radius:var(--radius);
-  border:var(--outline-w) solid var(--outline);
-  overflow:hidden;
+  outline:var(--outline-w) solid var(--outline);
+  padding:clamp(12px,2vw,20px);
 }
 .card .inner{padding:var(--pad)}
 
