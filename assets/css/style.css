@@ -83,14 +83,24 @@ body{
 }
 .card .inner{padding:var(--pad)}
 
-/* headlines */
-.headline{
-  display:flex; align-items:center; justify-content:center;
-  min-height:72px; padding:10px;
+/* HEADLINES (data-bg="wlplogo|wlpnologo") */
+.headline-card{
+  display:flex;align-items:center;justify-content:center;
+  min-height:72px;padding:10px;
+  background-color:var(--brown);
+  color:var(--text);
+  border-radius:var(--radius);
+  outline:var(--outline-w) solid var(--outline);
 }
-.headline h2, .headline h3{margin:0;color:var(--text)}
-.wallpaper.logo{background:url("../images/wlplogo.png") center/cover no-repeat}
-.wallpaper.no-logo{background:url("../images/wlpnologo.png") center/cover no-repeat}
+.headline-card > span{font-weight:800}
+.headline-card[data-bg="wlplogo"]{
+  background-image:url("../images/wlplogo.png");
+  background-size:cover; background-position:center;
+}
+.headline-card[data-bg="wlpnologo"]{
+  background-image:url("../images/wlpnologo.png");
+  background-size:cover; background-position:center;
+}
 
 /* a11y */
 .visually-hidden{
