@@ -119,12 +119,13 @@ document.addEventListener('play',(ev)=>{
   $$('audio').forEach(a=>{ if(a!==ev.target) a.pause(); });
 }, true);
 
-/* kommentar per mail */
-const form = $('#comment-form');
+/* kommentar per mail (passt zu <form class="comment-form"> + <textarea name="message">) */
+const form = document.querySelector('.comment-form');
 if (form) {
   form.addEventListener('submit', (e)=>{
     e.preventDefault();
-    const txt = $('#comment-text').value.trim();
+    const txtEl = form.querySelector('textarea[name="message"]');
+    const txt = txtEl ? txtEl.value.trim() : '';
     if (!txt) return;
     if (!EMAIL_TO) { alert('zieladresse fehlt.'); return; }
     const subject = encodeURIComponent('Nachricht von der ROKKO! Records Website');
