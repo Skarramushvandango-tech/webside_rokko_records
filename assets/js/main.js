@@ -13,15 +13,30 @@ if (burger && nav) {
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 }
-/* intro-video sound toggle */
-const video = $('#intro-video');
-const soundBtn = $('#sound-toggle');
-if (video && soundBtn) {
-  soundBtn.addEventListener('click', () => {
-    video.muted = !video.muted;
-    soundBtn.textContent = `Sound: ${video.muted ? 'aus' : 'an'}`;
-    soundBtn.setAttribute('aria-pressed', String(!video.muted));
+/* intro-video sound toggle (passt zu #introVideo und .video-sound-controls mit 2 Buttons) */
+const video = document.querySelector('#introVideo');
+const btnOn  = document.querySelector('.btn-sound-on');
+const btnOff = document.querySelector('.btn-sound-off');
+
+function updateSoundButtons() {
+  if (!btnOn || !btnOff || !video) return;
+  btnOn.setAttribute('aria-pressed', String(!video.muted));
+  btnOff.setAttribute('aria-pressed', String(video.muted));
+}
+
+if (video) { video.muted = true; updateSoundButtons(); }
+
+if (btnOn && video) {
+  btnOn.addEventListener('click', () => {
+    video.muted = false;
+    updateSoundButtons();
     if (video.paused) video.play().catch(()=>{});
+  });
+}
+if (btnOff && video) {
+  btnOff.addEventListener('click', () => {
+    video.muted = true;
+    updateSoundButtons();
   });
 }
 
