@@ -55,7 +55,7 @@ if (btnOff && video) {
   vid.addEventListener('error', fallback);
 })();
 
-/* bios laden */
+/* bios laden (passt zu .bio .bio-teaser .bio-full, data-bio-id=...) */
 (async function loadBios(){
   try{
     const res = await fetch('assets/data/bios.html', {cache:'no-store'});
@@ -63,30 +63,23 @@ if (btnOff && video) {
     const html = await res.text();
     const tmp = document.createElement('div'); tmp.innerHTML = html;
 
-    // label-text
-    const aboutBox = $('#about-text');
-    if (aboutBox && aboutBox.dataset.bioId) {
-      const src = tmp.querySelector('#'+CSS.escape(aboutBox.dataset.bioId));
-      if (src) aboutBox.innerHTML = src.innerHTML;
-    }
-
-    // artists
-    $$('.bio[data-bio-id]').forEach(box=>{
-      const id = box.dataset.bioId;
+    document.querySelectorAll('.bio[data-bio-id]').forEach(box=>{
+      const id  = box.dataset.bioId;
       const src = tmp.querySelector('#'+CSS.escape(id));
       if(!src) return;
       const paras = Array.from(src.querySelectorAll('p'));
       if(paras.length===0) return;
 
-      const preview = box.querySelector('.bio-preview');
-      const full = box.querySelector('.bio-full');
+      const teaser = box.querySelector('.bio-teaser');
+      const full   = box.querySelector('.bio-full');
 
-      // preview: nur erster absatz + ellipsis
-      preview.textContent = paras[0].textContent.trim() + ' …';
-
-      // full: gesamter text (alle absätze), initial versteckt
-      full.innerHTML = paras.map(p=>`<p>${p.innerHTML}</p>`).join('');
-      full.setAttribute('hidden','');
+      if (teaser) {
+        teaser.textContent = paras[0].textContent.trim() + ' …';
+      }
+      if (full) {
+        full.innerHTML = paras.map(p=>`<p>${p.innerHTML}</p>`).join('');
+        full.setAttribute('hidden','');
+      }
     });
   }catch(e){}
 })();
