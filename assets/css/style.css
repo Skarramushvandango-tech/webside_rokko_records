@@ -1,156 +1,153 @@
+/* Farben/Variablen (exakt) */
 :root{
   --sand:#F5F3BB;
-  --brown:#342F2F;
+  --braun:#342F2F;
   --outline:#B36728;
-  --text:#F5F3BB;
-
-  --pad:18px;
   --radius:14px;
-  --outline-w:4px;
+  --outline-w:6px;           /* Abstandsregel: min vertikal = 2x outline-w */
+  --maxw-desktop:1100px;
 }
-/* LOGO SWITCH */
-.logo.desktop{display:block}
-.logo.mobile{display:none}
-@media (max-width:640px){
-  .logo.desktop{display:none}
-  .logo.mobile{display:block}
-}
-/* reset */
+
+/* Reset kompakt */
 *{box-sizing:border-box}
-html,body{margin:0;padding:0}
-img{display:block;max-width:100%;height:auto}
-button{font:inherit}
-
-/* hidden erzwingen */
-[hidden]{display:none !important}
-
-/* grundlayout */
+html,body{height:100%}
 body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   background:var(--sand);
-  color:#111;
-  font:400 17px/1.6 system-ui,-apple-system,Segoe UI,Arial,Helvetica,sans-serif;
-}
-
-/* HEADER */
-.site-header{
-  position:sticky; top:0; z-index:10;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:10px var(--pad);
-  background:var(--brown); color:var(--text);
-}
-.brand{display:flex;align-items:center;gap:12px}
-
-/* Logos + Schriftzug (passt zur index.html) */
-.logo.mobile{width:48px;height:auto;display:none}
-.logo.desktop{width:auto;height:40px}
-.brand-text{display:flex;flex-direction:column;line-height:1.05}
-.brand-text span:first-child{font-weight:800;font-size:20px;color:var(--text)}
-.brand-text span:last-child{font-weight:800;font-size:12px;letter-spacing:1.6px;color:var(--text);text-transform:uppercase}
-/* BURGER + NAV */
-.burger{background:transparent;border:0;display:flex;flex-direction:column;gap:4px;padding:6px;cursor:pointer}
-.burger span{width:22px;height:2px;background:var(--text)}
-
-/* passt zu <nav id="main-nav" class="nav"> */
-.nav{
-  position:absolute;right:10px;top:56px;background:var(--brown);
-  border-radius:10px;padding:10px;display:none;flex-direction:column;gap:6px
-}
-.nav a{color:var(--text);text-decoration:none;font-weight:400}
-.nav.is-open{display:flex}
-
-/* INTRO VIDEO */
-.video-wrap{position:relative; background:var(--brown); min-height:40vh;}
-.intro-video{width:100%;display:block}
-/* halbtransparenter Text unten rechts */
-.video-badge{
-  position:absolute; right:10px; bottom:56px;
-  background:rgba(52,47,47,.6); color:var(--text);
-  border:var(--outline-w) solid var(--outline); border-radius:10px; padding:6px 10px;
-}
-/* Sound-Buttons unten rechts */
-.video-sound-controls{
-  position:absolute; right:10px; bottom:10px;
-  background:rgba(52,47,47,.6); color:var(--text);
-  border:var(--outline-w) solid var(--outline); border-radius:10px; padding:6px 10px;
-}
-.video-sound-controls button{background:transparent;border:0;color:inherit;cursor:pointer}
-
-/* optionaler Fallback kann bleiben */
-.video-hero--fallback{
-  display:flex; align-items:center; justify-content:center;
-  background:url("../images/wlpnologo.png") center/cover no-repeat, var(--brown);
-  min-height:40vh;
-}
-
-/* cards */
-.card{
-  background:var(--brown);
   color:var(--sand);
-  border-radius:var(--radius);
-  outline:var(--outline-w) solid var(--outline);
-  padding:clamp(12px,2vw,20px);
 }
-.card .inner{padding:var(--pad)}
 
-/* HEADLINES (data-bg="wlplogo|wlpnologo") */
+/* Header */
+.site-header{position:sticky; top:0; z-index:1000; background:var(--braun)}
+.header-inner{
+  margin-inline:auto; max-width:var(--maxw-desktop);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 14px;
+}
+.brand{display:flex; align-items:center; gap:12px; text-decoration:none}
+.brand-logo{width:96px; height:auto; display:block}
+.brand-text{color:var(--sand); font-weight:700; line-height:1}
+.burger{
+  background:none; border:0; cursor:pointer; padding:8px;
+  display:grid; gap:4px;
+}
+.burger span{display:block; width:28px; height:3px; background:var(--sand)}
+.site-nav{
+  position:absolute; right:10px; top:100%;
+  background:var(--braun);
+  border-radius: var(--radius);
+  outline: var(--outline-w) solid var(--outline);
+  padding:10px;
+}
+.site-nav a{color:var(--sand); text-decoration:none; display:block; padding:8px 10px}
+
+/* Sektionen & Video */
+.section.fullbleed{position:relative}
+.intro-video{width:100%; height:auto; display:block}
+.video-overlay{position:absolute; right:10px; bottom:10px}
+.overlay-card{
+  background:rgba(52,47,47,0.6);
+  border-radius: var(--radius);
+  outline: var(--outline-w) solid var(--outline);
+  padding:8px 10px;
+}
+.btn{
+  background:var(--braun); color:var(--sand);
+  border:2px solid var(--outline); border-radius:10px;
+  padding:8px 12px; cursor:pointer;
+}
+
+/* Headline-Karten (WLP no-logo / logo) */
 .headline-card{
-  display:flex;align-items:center;justify-content:center;
-  min-height:72px;padding:10px;
-  background-color:var(--brown);
-  color:var(--text);
-  border-radius:var(--radius);
-  outline:var(--outline-w) solid var(--outline);
+  margin: calc(2*var(--outline-w)) auto 0 auto;
+  max-width:var(--maxw-desktop);
+  border-radius: var(--radius);
+  outline: var(--outline-w) solid var(--outline);
+  background: var(--braun) center/cover no-repeat;
+  background-image: var(--headline-bg);
 }
-.headline-card > span{font-weight:800}
-.headline-card[data-bg="wlplogo"]{
-  background-image:url("../images/wlplogo.png");
-  background-size:cover; background-position:center;
+.headline-card h2{margin:0; padding:28px 18px; text-align:center; color:var(--sand)}
+
+/* Standard-Karten */
+.card{
+  margin: calc(2*var(--outline-w)) auto 0 auto;
+  max-width:var(--maxw-desktop);
+  border-radius: var(--radius);
+  outline: var(--outline-w) solid var(--outline);
+  background: var(--braun);
 }
-.headline-card[data-bg="wlpnologo"]{
-  background-image:url("../images/wlpnologo.png");
-  background-size:cover; background-position:center;
+.card-inner{padding:16px}
+
+/* Headline im gleichen Card (Kommentarfeld) */
+.headline-in-card{
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+  background: var(--braun) center/cover no-repeat;
+  background-image: var(--headline-bg);
+  outline: var(--outline-w) solid var(--outline);
+  outline-offset:-var(--outline-w);
+}
+.headline-in-card h2{margin:0; padding:20px; text-align:center}
+
+/* Artists */
+.artist-photo{width:100%; height:auto; border-radius:10px; display:block; margin-bottom:12px}
+.bio{color:var(--sand); line-height:1.5; margin-bottom:12px}
+.bio .bio-teaser .bio-toggle{font-weight:700; cursor:pointer}
+
+/* Tracks */
+.tracks{display:grid; gap:12px}
+.track-mini{
+  display:flex; align-items:center; gap:12px;
+  padding:8px; border-radius:10px;
+  border:2px solid var(--outline); background:rgba(0,0,0,0.06);
+  cursor:pointer;
+}
+.track-mini img{width:84px; height:auto; display:block; border-radius:8px}
+.track-title{color:var(--sand)}
+.track-drop{border-radius:10px; padding:10px; background:rgba(0,0,0,0.12)}
+.cover-large{width:100%; max-width:600px; border-radius:10px; display:block; margin-bottom:8px}
+
+.players{display:grid; gap:8px}
+.player{display:flex; flex-direction:column; gap:4px}
+.player span{font-size:0.95rem}
+audio{width:100%}
+
+/* YouTube */
+.youtube iframe{
+  width:100%; height:315px; border:0; border-radius:10px; display:block; margin-top:12px;
 }
 
-/* a11y */
-.visually-hidden{
-  position:absolute !important; height:1px; width:1px; overflow:hidden;
-  clip:rect(1px,1px,1px,1px); white-space:nowrap;
+/* Coming soon */
+.coming-soon{color:var(--sand); text-align:center; font-style:italic; padding:20px}
+
+/* Formular */
+.comment-form{display:grid; gap:10px}
+.comment-form label{font-weight:600}
+.comment-form input,.comment-form textarea{
+  background:#2b2727; color:var(--sand);
+  border:2px solid var(--outline); border-radius:10px; padding:10px;
 }
 
-/* ARTIST */
-.artist-photo{border-radius:10px; margin-bottom:12px}
-/* RELEASES */
-.releases{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:10px}
-.release-summary{
-  display:flex;align-items:center;gap:10px;cursor:pointer;
-  background:#2b2626;border:2px solid var(--outline);border-radius:10px;padding:8px;
+/* Responsiv: Mobile 80% / Landscape 70% */
+@media (max-width: 1024px){
+  .brand-logo{width:72px}
 }
-.release-summary .thumb{width:64px;height:64px;object-fit:cover;border:1px solid var(--outline);border-radius:6px}
-.release-summary .title{color:var(--text);font-weight:600}
-.release-panel{margin-top:12px;background:#2b2626;border:2px solid var(--outline);border-radius:10px;padding:12px}
-.cover-large{width:100%;max-width:420px;border-radius:10px;border:2px solid var(--outline);margin-bottom:10px}
-.tracklist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.tracklist li{display:flex;flex-direction:column;gap:4px}
-.tracklist audio{width:100%}
-/* YOUTUBE */
-.video-embed{margin-top:14px}
-.video-embed iframe{width:100%; aspect-ratio:16/9; border:2px solid var(--outline); border-radius:10px}
-/* KOMMENTARFELD */
-.comment-form label{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
-.comment-form input,
-.comment-form textarea{
-  width:100%; border:2px solid var(--outline); background:#2b2626; color:var(--text);
-  border-radius:10px; padding:10px; resize:vertical;
+@media (max-width: 768px){
+  .youtube iframe{height:240px}
 }
-.btn-submit{
-  margin-top:10px; background:#2b2626; color:var(--text);
-  border:2px solid var(--outline); border-radius:10px; padding:8px 12px; cursor:pointer;
+@media (max-width: 600px){
+  .card, .headline-card { width:80%; }
+  .header-inner{width:80%}
+  .site-nav{right:10%}
 }
-.hint{opacity:.8; font-size:.9em; margin-top:6px}
+@media (orientation: landscape) and (max-width: 900px){
+  .card, .headline-card { width:70%; }
+  .header-inner{width:70%}
+  .site-nav{right:15%}
+}
 
-/* RESPONSIVE + SPACING */
-.section{display:flex;justify-content:center;margin-block:calc(var(--outline-w)*2)}
-.card{width:80%; max-width:1100px}
-@media (min-width:900px){
-  .card{width:70%}
+/* Fokus sichtbar */
+a:focus, button:focus, input:focus, textarea:focus{
+  outline:2px dashed var(--sand); outline-offset:2px;
 }
