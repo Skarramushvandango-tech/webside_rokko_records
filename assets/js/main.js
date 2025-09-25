@@ -4,18 +4,15 @@ const EMAIL_TO = ""; // später setzen
 const $ = sel => document.querySelector(sel);
 const $$ = sel => Array.from(document.querySelectorAll(sel));
 
-/* burger-menü */
-const burger = $('.burger');
-const nav = $('#site-nav');
-if (nav && !nav.hasAttribute('hidden')) nav.setAttribute('hidden','');
+/* burger-menü (passt zu <nav id="main-nav" class="nav"> + .nav.is-open in CSS) */
+const burger = document.querySelector('.burger');
+const nav = document.querySelector('#main-nav');
 if (burger && nav) {
   burger.addEventListener('click', () => {
-    const open = !nav.hasAttribute('hidden');
-    if (open) { nav.setAttribute('hidden',''); burger.setAttribute('aria-expanded','false'); }
-    else { nav.removeAttribute('hidden'); burger.setAttribute('aria-expanded','true'); }
+    const open = nav.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 }
-
 /* intro-video sound toggle */
 const video = $('#intro-video');
 const soundBtn = $('#sound-toggle');
