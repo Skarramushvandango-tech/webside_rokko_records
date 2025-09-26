@@ -1,339 +1,338 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ROKKO! Records</title>
-  <link rel="preload" href="assets/movies/intro_movie.mp4" as="video" type="video/mp4">
-  <link rel="stylesheet" href="assets/css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROKKO! Records</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-
-  <!-- Header -->
-  <header class="site-header" id="top">
-    <div class="header-inner">
-      <a class="brand" href="#top" aria-label="ROKKO! Records Start">
-        <img class="brand-logo"
-             src="assets/images/logo.png"
-             srcset="assets/images/logo-96.png 96w, assets/images/logo.png 256w"
-             sizes="96px"
-             alt="ROKKO! Records Logo">
-        <span class="brand-text">ROKKO!<br>Records</span>
-      </a>
-
-      <button class="burger" aria-controls="site-nav" aria-expanded="false" aria-label="Menü öffnen">
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav id="site-nav" class="site-nav" hidden>
-        <a href="#intro">Intro</a>
-        <a href="#releases-head">Aktuelle Releases</a>
-        <a href="#releases">Releases (coming soon)</a>
-        <a href="#artists-head">ROKKO! Artists</a>
-        <a href="#artist-erling">Markus Erling</a>
-        <a href="#artist-henri_bellieu">Henri Bellieu</a>
-        <a href="#artist-fleur_et_beunie">Fleur et Beunié</a>
-        <a href="#artist-skank_schablonski">Skank Schablonski</a>
-        <a href="#artist-skaramush_vandango">Skaramush Vandango</a>
-        <a href="#comments">Kommentarfeld</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Intro Video -->
-  <section id="intro" class="section fullbleed">
-    <video id="introVideo" class="intro-video" preload="auto" playsinline muted loop>
-      <source src="assets/movies/intro_movie.mp4" type="video/mp4" />
-    </video>
-    <div class="video-overlay">
-      <div class="overlay-card">
-        <p>Intro-Video – tippen zum Abspielen / Stummschalten</p>
-        <div class="video-controls">
-          <button id="btnPlayPause" class="btn">Play/Pause</button>
-          <button id="btnMute" class="btn">Sound an/aus</button>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="assets/images/logo.png" alt="ROKKO! Records Logo" class="logo desktop-logo">
+                <img src="assets/images/logo-96.png" alt="ROKKO! Records Logo" class="logo mobile-logo">
+                <div class="brand-text">
+                    <div class="brand-line">ROKKO!</div>
+                    <div class="brand-line">Records</div>
+                </div>
+            </div>
+            <button class="burger-menu" id="burgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-      </div>
-    </div>
-  </section>
+        <nav class="nav-menu" id="navMenu">
+            <a href="#releases" class="nav-link">Aktuelle Releases</a>
+            <a href="#artists" class="nav-link">ROKKO! Artists</a>
+            <a href="#comments" class="nav-link">Kommentarfeld</a>
+        </nav>
+    </header>
 
-  <!-- Headline: Releases -->
-  <section id="releases-head" class="headline-card"
-           style="--headline-bg:url('assets/images/wlpnologo.png')">
-    <h2>aktuelle Releases</h2>
-  </section>
-
-  <!-- Releases (vorerst Platzhalter) -->
-  <section id="releases" class="card">
-    <div class="card-inner">
-      <p class="coming-soon">coming soon…</p>
-    </div>
-  </section>
-
-  <!-- Headline: Artists -->
-  <section id="artists-head" class="headline-card"
-           style="--headline-bg:url('assets/images/wlpnologo.png')">
-    <h2>ROKKO! Artists</h2>
-  </section>
-
-  <!-- ARTIST: Markus Erling -->
-  <section id="artist-erling" class="card artist-card" data-artist="erling">
-    <div class="card-inner">
-      <img class="artist-photo" src="artists/erling/fotos/erling_main.png" alt="Markus Erling">
-      <div class="bio" data-bio-id="bio-erling"></div>
-
-      <div class="tracks">
-        <div class="track-mini" data-target="erling-schlafen">
-          <img src="artists/erling/cover/endlich_schlafen_cover.png" alt="Endlich Schlafen">
-          <div class="track-title">endlich schlafen – Original Mix</div>
+    <!-- Intro Video -->
+    <section class="intro-video-section">
+        <div class="video-container">
+            <video id="introVideo" autoplay muted loop>
+                <source src="assets/movies/intro_movie.mp4" type="video/mp4">
+                Ihr Browser unterstützt das Video-Element nicht.
+            </video>
+            <div class="video-controls">
+                <button id="muteToggle" class="mute-button">🔇</button>
+            </div>
         </div>
-        <div class="track-drop" id="erling-schlafen" hidden>
-          <img class="cover-large" src="artists/erling/cover/endlich_schlafen_cover.png" alt="">
-          <div class="players">
-            <div class="player">
-              <span>endlich schlafen – Original Mix</span>
-              <audio controls preload="none">
-                <source src="artists/erling/audio_files/schlafen/endlich_schlafen_main.m4a" type="audio/mp4">
-              </audio>
-            </div>
-            <div class="player">
-              <span>endlich schlafen – MonoToni RMX</span>
-              <audio controls preload="none">
-                <source src="artists/erling/audio_files/schlafen/endlich_schlafen_monotoni.m4a" type="audio/mp4">
-              </audio>
-            </div>
-          </div>
-        </div>
+    </section>
 
-        <div class="track-mini" data-target="erling-regnet">
-          <img src="artists/erling/cover/regen_cover.png" alt="Tag an dem es regnet">
-          <div class="track-title">Tag an dem es regnet – Original Mix</div>
+    <!-- Releases Section Header -->
+    <section class="section-header">
+        <div class="header-frame">
+            <img src="assets/images/wlpnologo.png" alt="Background" class="header-bg">
+            <h2 class="section-title">aktuelle Releases</h2>
         </div>
-        <div class="track-drop" id="erling-regnet" hidden>
-          <img class="cover-large" src="artists/erling/cover/regen_cover.png" alt="">
-          <div class="players">
-            <div class="player">
-              <span>Tag an dem es regnet – Original Mix</span>
-              <audio controls preload="none">
-                <source src="artists/erling/audio_files/tagregnet/regnet_main.m4a" type="audio/mp4">
-              </audio>
-            </div>
-            <div class="player">
-              <span>Tag an dem es regnet – RMX</span>
-              <audio controls preload="none">
-                <source src="artists/erling/audio_files/tagregnet/regnet_rmx.m4a" type="audio/mp4">
-              </audio>
-            </div>
-          </div>
+    </section>
+
+    <!-- Releases Section -->
+    <section id="releases" class="content-section">
+        <div class="content-frame">
+            <p class="coming-soon">coming soon…</p>
         </div>
-      </div>
+    </section>
 
-      <!-- YouTube (Erling) -->
-      <div class="youtube">
-        <iframe title="Markus Erling - Video"
-                src="https://www.youtube.com/embed/Rh53YVgsfJ4?si=7IsePkQZbPZqOBvR"
-                loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- ARTIST: Henri Bellieu -->
-  <section id="artist-henri_bellieu" class="card artist-card" data-artist="henri_bellieu">
-    <div class="card-inner">
-      <img class="artist-photo" src="artists/henri_bellieu/fotos/henri_main.png" alt="Henri Bellieu">
-      <div class="bio" data-bio-id="bio-henri"></div>
-
-      <div class="tracks">
-        <div class="track-mini" data-target="henri-petite">
-          <img src="artists/henri_bellieu/cover/petite_colibri.png" alt="Petite Colibri">
-          <div class="track-title">Petite Colibri – Original Mix</div>
+    <!-- Artists Section Header -->
+    <section class="section-header">
+        <div class="header-frame">
+            <img src="assets/images/wlpnologo.png" alt="Background" class="header-bg">
+            <h2 class="section-title">ROKKO! Artists</h2>
         </div>
-        <div class="track-drop" id="henri-petite" hidden>
-          <img class="cover-large" src="artists/henri_bellieu/cover/petite_colibri.png" alt="">
-          <div class="players">
-            <div class="player">
-              <span>Petite Colibri – Original Mix</span>
-              <audio controls preload="none">
-                <source src="artists/henri_bellieu/audio_files/petitecolibri/petite_colibri_main.m4a" type="audio/mp4">
-              </audio>
+    </section>
+
+    <!-- Artists Section -->
+    <section id="artists" class="artists-section">
+        <!-- Henri Bellieu -->
+        <div class="artist-frame">
+            <img src="artists/henri_bellieu/fotos/henri_main.png" alt="Henri Bellieu" class="artist-photo">
+            <div class="artist-bio">
+                <p class="bio-preview">Henri Bellieu – schon sein Name klingt wie ein altes Chanson, gesungen in einer verrauchten Pariser Kneipe. Genau dort traf Markus Erling auf ihn: ziellos, die Straßen von Paris entlang wandernd, auf der Suche nach Schöngeist, Musik und einem Hauch französischem Chic. Am Piano saß Henri, mit rauchiger Stimme und Melodien, die den Raum zum Leuchten brachten.<span class="ellipsis">...</span></p>
+                <p class="bio-full" style="display: none;">Henri Bellieu – schon sein Name klingt wie ein altes Chanson, gesungen in einer verrauchten Pariser Kneipe. Genau dort traf Markus Erling auf ihn: ziellos, die Straßen von Paris entlang wandernd, auf der Suche nach Schöngeist, Musik und einem Hauch französischem Chic. Am Piano saß Henri, mit rauchiger Stimme und Melodien, die den Raum zum Leuchten brachten. Eine Nacht voller Rotwein, Gespräche über Liebe, Leid und das Leben – und aus dieser Begegnung wuchs eine Freundschaft, die sie bis heute trägt. Mit Petit Colibri singt Henri von einer Frau, die längst aus seinem Leben verschwunden ist und doch bis heute in seinem Herzen verweilt. Jeder seiner Songs trägt diese Ehrlichkeit: mal ist er der, dem das Herz gebrochen wurde, mal der, der selbst Narben hinterlassen hat. Henris Chansons sind keine Pose – sie sind gelebte Geschichten. Mal zart, mal schmerzlich, immer voller Wahrheit.</p>
+                <button class="expand-bio">Text erweitern</button>
             </div>
-            <div class="player">
-              <span>Petite Colibri – Nocturne Mix</span>
-              <audio controls preload="none">
-                <source src="artists/henri_bellieu/audio_files/petitecolibri/petite_colibri_nocturne_mix.m4a" type="audio/mp4">
-              </audio>
+            <div class="music-releases">
+                <div class="release-item" data-release="petite_colibri">
+                    <img src="artists/henri_bellieu/cover/petite_colibri.png" alt="Petite Colibri Cover" class="release-cover-mini">
+                    <span class="release-title">Petite Colibri</span>
+                </div>
+                <div class="release-item" data-release="la_femme">
+                    <img src="artists/henri_bellieu/cover/la_femme.png" alt="La Femme Cover" class="release-cover-mini">
+                    <span class="release-title">La Femme</span>
+                </div>
             </div>
-            <div class="player">
-              <span>Petite Colibri – Ennio Mix</span>
-              <audio controls preload="none">
-                <source src="artists/henri_bellieu/audio_files/petitecolibri/petite_colibri_ennio_mix.m4a" type="audio/mp4">
-              </audio>
+            <div class="release-player" id="player-petite_colibri" style="display: none;">
+                <img src="artists/henri_bellieu/cover/petite_colibri.png" alt="Petite Colibri Cover" class="release-cover-large">
+                <div class="track-list">
+                    <div class="track-item">
+                        <span class="track-name">Petite Colibri - Original Mix</span>
+                        <audio controls>
+                            <source src="artists/henri_bellieu/audio_files/petitecolibri/petite_colibri_main.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                    <div class="track-item">
+                        <span class="track-name">Petite Colibri - Ennio Mix</span>
+                        <audio controls>
+                            <source src="artists/henri_bellieu/audio_files/petitecolibri/petite_colibri_ennio_mix.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                    <div class="track-item">
+                        <span class="track-name">Petite Colibri - Nocturne Mix</span>
+                        <audio controls>
+                            <source src="artists/henri_bellieu/audio_files/petitecolibri/petite_colibri_nocturne_mix.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="release-player" id="player-la_femme" style="display: none;">
+                <img src="artists/henri_bellieu/cover/la_femme.png" alt="La Femme Cover" class="release-cover-large">
+                <div class="track-list">
+                    <div class="track-item">
+                        <span class="track-name">La Femme - Original Mix</span>
+                        <audio controls>
+                            <source src="artists/henri_bellieu/audio_files/lafemme/la_femme_main.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                    <div class="track-item">
+                        <span class="track-name">La Femme - Deux Mix</span>
+                        <audio controls>
+                            <source src="artists/henri_bellieu/audio_files/lafemme/la_femme_deux.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="track-mini" data-target="henri-lafemme">
-          <img src="artists/henri_bellieu/cover/la_femme.png" alt="La Femme">
-          <div class="track-title">La Femme – Original Mix</div>
+        <!-- Fleur et Beunié -->
+        <div class="artist-frame">
+            <img src="artists/fleur_et_beunie/fotos/fleurbenuie_main.png" alt="Fleur et Beunié" class="artist-photo">
+            <div class="artist-bio">
+                <p class="bio-preview">Fleur & Beunié – Jet-Set-Liebespaar aus Marseille. Eine Geschichte, fast wie in einem Film. Fleur, Mitte zwanzig, smart, talentiert und wunderschön, stammt aus einem kultivierten Elternhaus. Doch der Weg ins Familiengeschäft war für sie keine wirkliche Option.<span class="ellipsis">...</span></p>
+                <p class="bio-full" style="display: none;">Fleur & Beunié – Jet-Set-Liebespaar aus Marseille. Eine Geschichte, fast wie in einem Film. Fleur, Mitte zwanzig, smart, talentiert und wunderschön, stammt aus einem kultivierten Elternhaus. Doch der Weg ins Familiengeschäft war für sie keine wirkliche Option. Es zog sie in die Club-Szene, wo sie an ihrer Gesangskarriere feilte und ihre ersten kleinen Erfolge als Sängerin erlebte. Beunié, Anfang dreißig, gutaussehend, charismatisch und voller Talent, hatte genug vom goldenen Käfig. Bentley gegen Tonstudio, Glanz gegen Leidenschaft. Ein Schluck Whisky, ein rauchiger Gesang und ein Blick genügten – Boom. Er suchte eine Stimme und fand in Fleur die große Liebe. Mit Feu Léger – inklusive der gefeierten FIVRA-Remixe – haben Fleur & Beunié ihren Sound geprägt: jung, sexy und voller Energie, getragen von französischem Esprit und verwurzelt in der europäischen Underground-Club-Szene.</p>
+                <button class="expand-bio">Text erweitern</button>
+            </div>
+            <div class="music-releases">
+                <div class="release-item" data-release="feu_leger">
+                    <img src="artists/fleur_et_beunie/cover/feu_leger_cover.png" alt="Feu Léger Cover" class="release-cover-mini">
+                    <span class="release-title">Feu Léger</span>
+                </div>
+            </div>
+            <div class="release-player" id="player-feu_leger" style="display: none;">
+                <img src="artists/fleur_et_beunie/cover/feu_leger_cover.png" alt="Feu Léger Cover" class="release-cover-large">
+                <div class="track-list">
+                    <div class="track-item">
+                        <span class="track-name">Feu Léger - Original Mix</span>
+                        <audio controls>
+                            <source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_main.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                    <div class="track-item">
+                        <span class="track-name">Feu Léger - Sundown Mix</span>
+                        <audio controls>
+                            <source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_sundown_mix.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                    <div class="track-item">
+                        <span class="track-name">Feu Léger - House Mix</span>
+                        <audio controls>
+                            <source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_house_mix.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                    <div class="track-item">
+                        <span class="track-name">Feu Léger - Club Mix</span>
+                        <audio controls>
+                            <source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_club_mix.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                    <div class="track-item">
+                        <span class="track-name">Feu Léger - Classic Mix</span>
+                        <audio controls>
+                            <source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_french_classic_mix.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="track-drop" id="henri-lafemme" hidden>
-          <img class="cover-large" src="artists/henri_bellieu/cover/la_femme.png" alt="">
-          <div class="players">
-            <div class="player">
-              <span>La Femme – Original Mix</span>
-              <audio controls preload="none">
-                <source src="artists/henri_bellieu/audio_files/lafemme/la_femme_main.m4a" type="audio/mp4">
-              </audio>
+
+        <!-- Markus Erling -->
+        <div class="artist-frame">
+            <img src="artists/erling/fotos/erling_main.png" alt="Markus Erling" class="artist-photo">
+            <div class="artist-bio">
+                <p class="bio-preview">Markus Erling zieht seine Songs direkt aus dem eigenen Leben: Verlust, Missverständnisse, Schmerz und Liebe, gesehen durch die Augen eines Menschen, der nie so recht in eine Welt passt, die auf Schein und leeren Versprechen ruht.<span class="ellipsis">...</span></p>
+                <p class="bio-full" style="display: none;">Markus Erling zieht seine Songs direkt aus dem eigenen Leben: Verlust, Missverständnisse, Schmerz und Liebe, gesehen durch die Augen eines Menschen, der nie so recht in eine Welt passt, die auf Schein und leeren Versprechen ruht. Seine neurodiverse Wahrnehmung brachte ihn irgendwann an einen Punkt der Stille. Ein Rückzug, fast wie ins Exil, weg von Rollen und Erwartungen, die nie zu ihm passten. Dort, zwischen Alleinsein und Neufindung, begann er, sich Schicht für Schicht freizulegen. Und aus diesem Prozess wuchsen die Worte, die schon lange in ihm lagen, hinein in Musik. Heute ist er nicht nur Stimme seiner eigenen Songs, sondern auch Produzent der Artists bei ROKKO! Records. Mit jedem Track öffnet er neue Räume – und es ist klar, dass aus seiner Schublade noch vieles ans Licht kommen wird.</p>
+                <button class="expand-bio">Text erweitern</button>
             </div>
-            <div class="player">
-              <span>La Femme – Deux Mix</span>
-              <audio controls preload="none">
-                <source src="artists/henri_bellieu/audio_files/lafemme/la_femme_deux.m4a" type="audio/mp4">
-              </audio>
+            <div class="music-releases">
+                <div class="release-item" data-release="endlich_schlafen">
+                    <img src="artists/erling/cover/endlich_schlafen_cover.png" alt="Endlich Schlafen Cover" class="release-cover-mini">
+                    <span class="release-title">endlich schlafen</span>
+                </div>
+                <div class="release-item" data-release="tag_regnet">
+                    <img src="artists/erling/cover/regen_cover.png" alt="Tag an dem es regnet Cover" class="release-cover-mini">
+                    <span class="release-title">Tag an dem es regnet</span>
+                </div>
             </div>
-          </div>
+            <div class="release-player" id="player-endlich_schlafen" style="display: none;">
+                <img src="artists/erling/cover/endlich_schlafen_cover.png" alt="Endlich Schlafen Cover" class="release-cover-large">
+                <div class="track-list">
+                    <div class="track-item">
+                        <span class="track-name">endlich schlafen - Original Mix</span>
+                        <audio controls>
+                            <source src="artists/erling/audio_files/schlafen/endlich_schlafen_main.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                    <div class="track-item">
+                        <span class="track-name">endlich schlafen - MonoToni RMX</span>
+                        <audio controls>
+                            <source src="artists/erling/audio_files/schlafen/endlich_schlafen_monotoni.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                </div>
+            </div>
+            <div class="release-player" id="player-tag_regnet" style="display: none;">
+                <img src="artists/erling/cover/regen_cover.png" alt="Tag an dem es regnet Cover" class="release-cover-large">
+                <div class="track-list">
+                    <div class="track-item">
+                        <span class="track-name">Tag an dem es regnet - Original Mix</span>
+                        <audio controls>
+                            <source src="artists/erling/audio_files/tagregnet/regnet_main.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                    <div class="track-item">
+                        <span class="track-name">Tag an dem es regnet - RMX</span>
+                        <audio controls>
+                            <source src="artists/erling/audio_files/tagregnet/regnet_rmx.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                </div>
+            </div>
+            <div class="youtube-video">
+                <iframe src="https://www.youtube.com/embed/Rh53YVgsfJ4" frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ARTIST: Fleur et Beunié -->
-  <section id="artist-fleur_et_beunie" class="card artist-card" data-artist="fleur_et_beunie">
-    <div class="card-inner">
-      <img class="artist-photo" src="artists/fleur_et_beunie/fotos/fleurbenuie_main.png" alt="Fleur et Beunié">
-      <div class="bio" data-bio-id="bio-fleur"></div>
-
-      <div class="tracks">
-        <div class="track-mini" data-target="fleur-feu">
-          <img src="artists/fleur_et_beunie/cover/feu_leger_cover.png" alt="Feu Léger">
-          <div class="track-title">Feu Léger – Original Mix</div>
+        <!-- Skank Schablonski -->
+        <div class="artist-frame">
+            <img src="artists/skank_schablonski/fotos/skank_main.png" alt="Skank Schablonski" class="artist-photo">
+            <div class="artist-bio">
+                <p class="bio-preview">Skank Schablonski – der Assi aus Iserlohn. Vatta kloppte Kohle unner Tage und Mudda Annegret schnitt inne Nachbarschaft die Haare. Er wuchs auf, als typisches Blach vonne Achtziger, mit Zwille, Zwetschgenbaum und Schrebergarten.<span class="ellipsis">...</span></p>
+                <p class="bio-full" style="display: none;">Skank Schablonski – der Assi aus Iserlohn. Vatta kloppte Kohle unner Tage und Mudda Annegret schnitt inne Nachbarschaft die Haare. Er wuchs auf, als typisches Blach vonne Achtziger, mit Zwille, Zwetschgenbaum und Schrebergarten. Denn Skank, dat is nich einfach nur'n Typ, ne. Skank, dat is 'ne Marke, Junge. Mit seine Ruhrpott-Kodderschnauze, kloppta dir seine lyrisch-satirischen Backpfeifen so heftig umme Ohren, datte denkst der Aschermittwoch fällt auf nen Donnerstag. Seine aktuelle Single „Kohle raus, jetzt kommt Merz" bringt den Pöbel zum Steppen und dat Establishment zum Weinen. Skank weiß ganz genau, wo der Frosch die Locken hat…</p>
+                <button class="expand-bio">Text erweitern</button>
+            </div>
+            <div class="music-releases">
+                <div class="release-item" data-release="kohle_raus">
+                    <img src="artists/skank_schablonski/cover/kohle_raus_cover.png" alt="Kohle raus Cover" class="release-cover-mini">
+                    <span class="release-title">Kohle raus</span>
+                </div>
+            </div>
+            <div class="release-player" id="player-kohle_raus" style="display: none;">
+                <img src="artists/skank_schablonski/cover/kohle_raus_cover.png" alt="Kohle raus Cover" class="release-cover-large">
+                <div class="track-list">
+                    <div class="track-item">
+                        <span class="track-name">Kohle raus - Original Mix</span>
+                        <audio controls>
+                            <source src="artists/skank_schablonski/audio_files/kohle_raus/kohle_raus_main.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                    <div class="track-item">
+                        <span class="track-name">Kohle raus - RMX</span>
+                        <audio controls>
+                            <source src="artists/skank_schablonski/audio_files/kohle_raus/kohle_raus_rmx.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="track-drop" id="fleur-feu" hidden>
-          <img class="cover-large" src="artists/fleur_et_beunie/cover/feu_leger_cover.png" alt="">
-          <div class="players">
-            <div class="player">
-              <span>Feu Léger – Original Mix</span>
-              <audio controls preload="none">
-                <source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_main.m4a" type="audio/mp4">
-              </audio>
+
+        <!-- SkaRamush Vandango -->
+        <div class="artist-frame">
+            <img src="artists/skaramush_vandango/fotos/skaramush_main.png" alt="SkaRamush Vandango" class="artist-photo">
+            <div class="artist-bio">
+                <p class="bio-preview">SkaRamush Vandango ist kein gewöhnlicher Künstler – er ist das kreative Rückgrat von ROKKO! Records, Label-Chef und Mastermind hinter sämtlichen Produktionen. Alles, was hier entsteht, trägt seine Handschrift: geschrieben, programmiert, produziert.<span class="ellipsis">...</span></p>
+                <p class="bio-full" style="display: none;">SkaRamush Vandango ist kein gewöhnlicher Künstler – er ist das kreative Rückgrat von ROKKO! Records, Label-Chef und Mastermind hinter sämtlichen Produktionen. Alles, was hier entsteht, trägt seine Handschrift: geschrieben, programmiert, produziert. Denn seine Liebe zur Musik kennt keine Grenzen – weder Genre noch Persönlichkeit halten ihn auf. Hochgewachsen im Ruhrpott, mit goldener Stimme, großer Klappe und einem Hang zu starken Texten, folgt er nur einer Maxime: Musik muss den Poppes zum Wackeln bringen. Und wenn er selbst bei seinen Tracks nicht grinst, gilt: Was er nicht gut findet, ist schlichtweg scheiße. Im weisen Alter angekommen, wirkt SkaRamush gelassen und doch voller Energie. Seine neurodiverse Perspektive lässt ihn fern vom Rampenlicht bleiben – lieber zieht er im Schatten die Fäden. In seiner kreativen Garage warten Fleur et Beunié, Henri Bellieu, Skank Schablonski und viele mehr, die durch seine Ideen Gestalt annehmen.</p>
+                <button class="expand-bio">Text erweitern</button>
             </div>
-            <div class="player">
-              <span>Feu Léger – Sundown Mix</span>
-              <audio controls preload="none">
-                <source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_sundown_mix.m4a" type="audio/mp4">
-              </audio>
+            <div class="music-releases">
+                <div class="release-item" data-release="set_fire">
+                    <img src="artists/skaramush_vandango/cover/cover_fire.png" alt="Set the world on Fire Cover" class="release-cover-mini">
+                    <span class="release-title">Set the world on Fire</span>
+                </div>
             </div>
-            <div class="player">
-              <span>Feu Léger – House Mix</span>
-              <audio controls preload="none">
-                <source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_house_mix.m4a" type="audio/mp4">
-              </audio>
+            <div class="release-player" id="player-set_fire" style="display: none;">
+                <img src="artists/skaramush_vandango/cover/cover_fire.png" alt="Set the world on Fire Cover" class="release-cover-large">
+                <div class="track-list">
+                    <div class="track-item">
+                        <span class="track-name">Set the world on Fire - Original Mix</span>
+                        <audio controls>
+                            <source src="artists/skaramush_vandango/audio_files/set_fire/set_on_fire_original.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                    <div class="track-item">
+                        <span class="track-name">Set the world on Fire - RMX</span>
+                        <audio controls>
+                            <source src="artists/skaramush_vandango/audio_files/set_fire/set_on_fire_rmx.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                </div>
             </div>
-            <div class="player">
-              <span>Feu Léger – Classic Mix</span>
-              <audio controls preload="none">
-                <source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_french_classic_mix.m4a" type="audio/mp4">
-              </audio>
-            </div>
-            <div class="player">
-              <span>Feu Léger – Club Mix</span>
-              <audio controls preload="none">
-                <source src="artists/fleur_et_beunie/audio_files/feu_leger/feu_leger_club_mix.m4a" type="audio/mp4">
-              </audio>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ARTIST: Skank Schablonski -->
-  <section id="artist-skank_schablonski" class="card artist-card" data-artist="skank_schablonski">
-    <div class="card-inner">
-      <img class="artist-photo" src="artists/skank_schablonski/fotos/skank_main.png" alt="Skank Schablonski">
-      <div class="bio" data-bio-id="bio-skank"></div>
-
-      <div class="tracks">
-        <div class="track-mini" data-target="skank-kohle">
-          <img src="artists/skank_schablonski/cover/kohle_raus_cover.png" alt="Kohle raus">
-          <div class="track-title">Kohle raus – Original Mix</div>
+    <!-- Comments Section Header -->
+    <section class="section-header">
+        <div class="header-frame">
+            <img src="assets/images/wlpnologo.png" alt="Background" class="header-bg">
+            <h2 class="section-title">Kommentarfeld</h2>
         </div>
-        <div class="track-drop" id="skank-kohle" hidden>
-          <img class="cover-large" src="artists/skank_schablonski/cover/kohle_raus_cover.png" alt="">
-          <div class="players">
-            <div class="player">
-              <span>Kohle raus – Original Mix</span>
-              <audio controls preload="none">
-                <source src="artists/skank_schablonski/audio_files/kohle_raus/kohle_raus_main.m4a" type="audio/mp4">
-              </audio>
-            </div>
-            <div class="player">
-              <span>Kohle raus – RMX</span>
-              <audio controls preload="none">
-                <source src="artists/skank_schablonski/audio_files/kohle_raus/kohle_raus_rmx.m4a" type="audio/mp4">
-              </audio>
-            </div>
-          </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section id="comments" class="content-section">
+        <div class="content-frame">
+            <form class="comment-form" id="commentForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-Mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Nachricht:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Nachricht senden</button>
+            </form>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ARTIST: Skaramush Vandango -->
-  <section id="artist-skaramush_vandango" class="card artist-card" data-artist="skaramush_vandango">
-    <div class="card-inner">
-      <img class="artist-photo" src="artists/skaramush_vandango/fotos/skaramush_main.png" alt="Skaramush Vandango">
-      <div class="bio" data-bio-id="bio-skara"></div>
-
-      <div class="tracks">
-        <div class="track-mini" data-target="skara-fire">
-          <img src="artists/skaramush_vandango/cover/cover_fire.png" alt="Set the world on Fire">
-          <div class="track-title">Set the world on Fire – Original Mix</div>
-        </div>
-        <div class="track-drop" id="skara-fire" hidden>
-          <img class="cover-large" src="artists/skaramush_vandango/cover/cover_fire.png" alt="">
-          <div class="players">
-            <div class="player">
-              <span>Set the world on Fire – Original Mix</span>
-              <audio controls preload="none">
-                <source src="artists/skaramush_vandango/audio_files/set_fire/set_on_fire_original.m4a" type="audio/mp4">
-              </audio>
-            </div>
-            <div class="player">
-              <span>Set the world on Fire – RMX</span>
-              <audio controls preload="none">
-                <source src="artists/skaramush_vandango/audio_files/set_fire/set_on_fire_rmx.m4a" type="audio/mp4">
-              </audio>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Kommentarfeld (Headline im selben Card, WLP no-logo) -->
-  <section id="comments" class="card">
-    <div class="headline-in-card" style="--headline-bg:url('assets/images/wlpnologo.png')">
-      <h2>Kommentarfeld</h2>
-    </div>
-    <div class="card-inner">
-      <form class="comment-form" id="commentForm">
-        <label for="c-name">Name</label>
-        <input id="c-name" name="name" type="text" autocomplete="name" required>
-        <label for="c-message">Nachricht</label>
-        <textarea id="c-message" name="message" rows="4" required></textarea>
-        <button type="submit" class="btn">Senden</button>
-        <p class="form-note">Wird per E-Mail versendet (Adresse später in JS setzen).</p>
-      </form>
-    </div>
-  </section>
-
-  <!-- Deko: Logo-Wallpaper einmal gegen Ende -->
-  <section class="headline-card" style="--headline-bg:url('assets/images/wlplogo.png')">
-    <h2>ROKKO! Records</h2>
-  </section>
-
-  <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
