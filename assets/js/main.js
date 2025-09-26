@@ -1,159 +1,217 @@
-/* delivered-per-instruction */
-const EMAIL_TO = ""; // später setzen (mailto-Fallback)
+// Global variables
+let currentlyPlayingAudio = null;
 
-/* Kurz-Utils */
-const $  = (sel) => document.querySelector(sel);
-const $$ = (sel) => Array.from(document.querySelectorAll(sel));
-
-/* Burger-Menü – arbeitet mit <nav id="site-nav" hidden> */
-(() => {
-  const burger = $('.burger');
-  const nav = $('#site-nav');
-  if (!burger || !nav) return;
-
-  burger.addEventListener('click', () => {
-    const open = !nav.hasAttribute('hidden');
-    if (open) {
-      nav.setAttribute('hidden','');
-      burger.setAttribute('aria-expanded','false');
-    } else {
-      nav.removeAttribute('hidden');
-      burger.setAttribute('aria-expanded','true');
-    }
-  });
-
-  /* Auto-close beim Klick auf Link */
-  nav.addEventListener('click', (e)=>{
-    if (e.target.tagName === 'A') {
-      nav.setAttribute('hidden','');
-      burger.setAttribute('aria-expanded','false');
-    }
-  });
-})();
-
-/* Intro-Video: Play/Pause + Mute (iOS sicher) */
-(() => {
-  const video = $('#introVideo');
-  const btnPlayPause = $('#btnPlayPause');
-  const btnMute = $('#btnMute');
-  if (!video) return;
-
-  video.muted = true;                 // Autoplay auf iOS nur stumm
-  video.play().catch(()=>{});         // ok, falls User-Geste fehlt
-
-  btnPlayPause?.addEventListener('click', ()=>{
-    if (video.paused) { video.play().catch(()=>{}); } else { video.pause(); }
-  });
-
-  btnMute?.addEventListener('click', ()=>{
-    video.muted = !video.muted;
-    // Button-Text bleibt neutral, keine Dynamik nötig
-  });
-})();
-
-/* Nur ein Audio gleichzeitig */
-document.addEventListener('play',(ev)=>{
-  if (ev.target.tagName !== 'AUDIO') return;
-  $$('audio').forEach(a => { if (a !== ev.target) a.pause(); });
-}, true);
-
-/* Tracks: .track-mini toggelt eigenes .track-drop, schließt andere */
-(() => {
-  function closeAllDrops(exceptId){
-    $$('.track-drop').forEach(el=>{
-      if (el.id !== exceptId) el.setAttribute('hidden','');
-    });
-  }
-  document.addEventListener('click',(ev)=>{
-    const mini = ev.target.closest('.track-mini');
-    if (!mini) return;
-    const targetId = mini.getAttribute('data-target');
-    const drop = targetId ? $('#'+CSS.escape(targetId)) : null;
-    if (!drop) return;
-    const isHidden = drop.hasAttribute('hidden');
-    closeAllDrops(targetId);
-    if (isHidden) drop.removeAttribute('hidden'); else drop.setAttribute('hidden','');
-  });
-})();
-
-/* BIOS laden – erzeugt teaser/full dynamisch + Mapping für Skank/Skaramush */
-(async () => {
-  try{
-    const res = await fetch('assets/data/bios.html', {cache:'no-store'});
-    if(!res.ok) return;
-    const html = await res.text();
-    const tmp = document.createElement('div'); tmp.innerHTML = html;
-
-    const idMap = (id) => {
-      if (id === 'bio-skank') return '#bio-schablonski';
-      if (id === 'bio-skara') return '#bio-skaramush';
-      return '#'+id; // bio-erling, bio-henri, bio-fleur direkt
-    };
-
-    document.querySelectorAll('.bio[data-bio-id]').forEach(box=>{
-      const id  = box.dataset.bioId;
-      const src = tmp.querySelector(idMap(id));
-      if(!src) return;
-
-      const paras = Array.from(src.querySelectorAll('p'));
-      if(paras.length===0) return;
-
-      // Teaser = erster Absatz + „… Text erweitern“
-      const teaser = document.createElement('div');
-      teaser.className = 'bio-teaser';
-      teaser.innerHTML = `<p>${paras[0].innerHTML} … <span class="bio-toggle" aria-expanded="false"><b>Text erweitern</b></span></p>`;
-
-      // Full = alle Absätze, initial hidden
-      const full = document.createElement('div');
-      full.className = 'bio-full';
-      full.innerHTML = paras.map(p=>`<p>${p.innerHTML}</p>`).join('');
-      full.setAttribute('hidden','');
-
-      box.appendChild(teaser);
-      box.appendChild(full);
-    });
-  }catch(e){}
-})();
-
-/* Bio Toggle */
-document.addEventListener('click',(ev)=>{
-  const btn = ev.target.closest('.bio-toggle');
-  if(!btn) return;
-  const box = btn.closest('.bio');
-  if(!box) return;
-  const full = box.querySelector('.bio-full');
-  if(!full) return;
-  const expanded = btn.getAttribute('aria-expanded') === 'true';
-  if (expanded){
-    full.setAttribute('hidden','');
-    btn.setAttribute('aria-expanded','false');
-    btn.innerHTML = '<b>… Text erweitern</b>';
-    box.scrollIntoView({behavior:'smooth', block:'start'});
-  } else {
-    full.removeAttribute('hidden');
-    btn.setAttribute('aria-expanded','true');
-    btn.innerHTML = '<b>Text einklappen</b>';
-  }
+// DOM Content Loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializeBurgerMenu();
+    initializeVideoControls();
+    initializeBioExpansion();
+    initializeReleaseToggles();
+    initializeAudioControls();
+    initializeCommentForm();
+    initializeSmoothScrolling();
 });
 
-/* Kommentar per Mail (mailto-Fallback) */
-(() => {
-  const form = $('.comment-form');
-  if (!form) return;
-  form.addEventListener('submit',(e)=>{
-    e.preventDefault();
-    const name = $('#c-name')?.value?.trim() || '';
-    const msg  = $('#c-message')?.value?.trim() || '';
-    if (!msg){
-      alert('Bitte eine Nachricht eingeben.');
-      return;
+// Burger Menu Functionality
+function initializeBurgerMenu() {
+    const burgerMenu = document.getElementById('burgerMenu');
+    const navMenu = document.getElementById('navMenu');
+    
+    burgerMenu.addEventListener('click', function() {
+        burgerMenu.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a nav link
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            burgerMenu.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!burgerMenu.contains(event.target) && !navMenu.contains(event.target)) {
+            burgerMenu.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+}
+
+// Video Controls
+function initializeVideoControls() {
+    const video = document.getElementById('introVideo');
+    const muteToggle = document.getElementById('muteToggle');
+    
+    if (video && muteToggle) {
+        muteToggle.addEventListener('click', function() {
+            if (video.muted) {
+                video.muted = false;
+                muteToggle.textContent = '🔊';
+            } else {
+                video.muted = true;
+                muteToggle.textContent = '🔇';
+            }
+        });
     }
-    if (!EMAIL_TO){
-      alert('Zieladresse fehlt. In assets/js/main.js EMAIL_TO setzen.');
-      return;
+}
+
+// Biography Expansion
+function initializeBioExpansion() {
+    const expandButtons = document.querySelectorAll('.expand-bio');
+    
+    expandButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const artistFrame = this.closest('.artist-frame');
+            const bioPreview = artistFrame.querySelector('.bio-preview');
+            const bioFull = artistFrame.querySelector('.bio-full');
+            
+            if (bioFull.style.display === 'none' || bioFull.style.display === '') {
+                bioPreview.style.display = 'none';
+                bioFull.style.display = 'block';
+                this.textContent = 'Text einklappen';
+            } else {
+                bioPreview.style.display = 'block';
+                bioFull.style.display = 'none';
+                this.textContent = 'Text erweitern';
+            }
+        });
+    });
+}
+
+// Release Toggle Functionality
+function initializeReleaseToggles() {
+    const releaseItems = document.querySelectorAll('.release-item');
+    
+    releaseItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const releaseId = this.getAttribute('data-release');
+            const player = document.getElementById(`player-${releaseId}`);
+            const artistFrame = this.closest('.artist-frame');
+            const allPlayers = artistFrame.querySelectorAll('.release-player');
+            
+            // Close all other players in this artist frame
+            allPlayers.forEach(p => {
+                if (p.id !== `player-${releaseId}`) {
+                    p.style.display = 'none';
+                }
+            });
+            
+            // Toggle current player
+            if (player.style.display === 'none' || player.style.display === '') {
+                player.style.display = 'block';
+                // Scroll to player
+                player.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                player.style.display = 'none';
+            }
+        });
+    });
+}
+
+// Audio Controls - Stop other audio when new one starts
+function initializeAudioControls() {
+    const audioElements = document.querySelectorAll('audio');
+    
+    audioElements.forEach(audio => {
+        audio.addEventListener('play', function() {
+            // Stop currently playing audio
+            if (currentlyPlayingAudio && currentlyPlayingAudio !== this) {
+                currentlyPlayingAudio.pause();
+                currentlyPlayingAudio.currentTime = 0;
+            }
+            
+            // Stop video audio if playing
+            const video = document.getElementById('introVideo');
+            if (video && !video.muted) {
+                video.muted = true;
+                document.getElementById('muteToggle').textContent = '🔇';
+            }
+            
+            currentlyPlayingAudio = this;
+        });
+        
+        audio.addEventListener('ended', function() {
+            currentlyPlayingAudio = null;
+        });
+        
+        audio.addEventListener('pause', function() {
+            if (currentlyPlayingAudio === this) {
+                currentlyPlayingAudio = null;
+            }
+        });
+    });
+}
+
+// Comment Form
+function initializeCommentForm() {
+    const commentForm = document.getElementById('commentForm');
+    
+    if (commentForm) {
+        commentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            // Here you would typically send the data to your email service
+            // For now, we'll show an alert
+            alert('Vielen Dank für Ihre Nachricht! Wir werden uns bald bei Ihnen melden.');
+            
+            // Reset form
+            this.reset();
+        });
     }
-    const subject = encodeURIComponent('Nachricht von der ROKKO! Records Website');
-    const body = encodeURIComponent((name?(`Name: ${name}\n\n`):'') + msg);
-    window.location.href = `mailto:${EMAIL_TO}?subject=${subject}&body=${body}`;
-  });
-})();
+}
+
+// Smooth Scrolling for Navigation
+function initializeSmoothScrolling() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Utility function to stop all audio
+function stopAllAudio() {
+    const audioElements = document.querySelectorAll('audio');
+    audioElements.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+    });
+    currentlyPlayingAudio = null;
+}
+
+// Handle window resize for responsive behavior
+window.addEventListener('resize', function() {
+    // Close mobile menu on resize to desktop
+    if (window.innerWidth > 768) {
+        const burgerMenu = document.getElementById('burgerMenu');
+        const navMenu = document.getElementById('navMenu');
+        
+        if (burgerMenu && navMenu) {
+            burgerMenu.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    }
+});
