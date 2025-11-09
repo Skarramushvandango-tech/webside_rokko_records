@@ -39,6 +39,8 @@ body {
 .logo {
     height: 60px;
     width: auto;
+    max-width: 200px;
+    object-fit: contain;
 }
 
 .desktop-logo {
@@ -123,11 +125,13 @@ body {
 .intro-video-section {
     width: 100%;
     position: relative;
+    background-color: #F5F3BB;
 }
 
 .video-container {
     position: relative;
     width: 100%;
+    background-color: #F5F3BB;
 }
 
 #introVideo {
@@ -295,7 +299,7 @@ body {
 .release-player {
     margin-bottom: 2rem;
     padding: 1.5rem;
-    background-color: rgba(179, 103, 40, 0.1);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
 }
 
@@ -420,6 +424,8 @@ audio::-webkit-media-controls-pause-button {
     
     .mobile-logo {
         display: block;
+        max-width: 96px;
+        height: auto;
     }
     
     .brand-line {
