@@ -131,6 +131,7 @@ body {
 .video-container {
     position: relative;
     width: 100%;
+    background-color: #F5F3BB;
 }
 
 #introVideo {
