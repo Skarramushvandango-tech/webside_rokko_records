@@ -140,10 +140,21 @@ body {
     display: block;
 }
 
+.video-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+    z-index: 10;
+}
+
 .video-controls {
     position: absolute;
     bottom: 20px;
     right: 20px;
+    z-index: 20;
 }
 
 .mute-button {
